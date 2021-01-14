@@ -1,6 +1,8 @@
 # Project Name
+Local Review
 
 > Project description
+> Displays the reviews of local neighbors
 
 ## Related Projects
 
