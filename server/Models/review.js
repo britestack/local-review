@@ -1,27 +1,28 @@
 const mongoose = require('mongoose');
 
-const ReviewSchema = mongoose.Schema({
-  name: {
-    type: String,
-    unique: true
-  },
-  features: [{
-    content: String,
-    total_votes: Number,
-    liked: Number
-  }],
-  contents: [{
-    username: String,
-    thumbnails: String,
-    resident: Boolean,
-    type: String,
-    posted: {
-      type: Date,
-      default: Date.now
-    },
-    message: String,
-    liked: Number
-  }]
+const FeatureSchema = new mongoose.Schema({
+  content: String,
+  totalVotes: Number,
+  liked: Number,
 });
 
-module.exports = mongoose.model('Review', ReviewSchema);
+const ContentSchema = new mongoose.Schema({
+  username: String,
+  thumbnails: String,
+  resident: Boolean,
+  type: String,
+  posted: {
+    type: Date,
+    default: Date.now,
+  },
+  message: String,
+  liked: Number,
+});
+
+const Features = mongoose.model('feature', FeatureSchema);
+const Contents = mongoose.model('content', ContentSchema);
+
+module.exports = {
+  Features,
+  Contents,
+};
