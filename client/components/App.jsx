@@ -12,6 +12,12 @@ const StyledApp = styled.div`
   flex-direction: column;
   letter-spacing: -0.1px;
   line-height: 24px; */
+  color:#3b4144;
+font-family:TruliaSans;
+font-size:24px;
+font-weight:700;
+line-height:36px;
+text-align:left;
 `;
 
 class App extends Component {
@@ -27,13 +33,13 @@ class App extends Component {
         this.setState({
           features
         })
-        console.log(this.state.features);
       })
   }
   render() {
     return (
       <StyledApp>
-        <Features />
+        <h3>What Locals Say about Marina</h3>
+        <Features features={this.state.features} />
         <Review />
       </StyledApp>
     )
