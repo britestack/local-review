@@ -1,45 +1,36 @@
 const express = require('express');
-const { Review } = require('../Models/review');
+const { Feature } = require('../Models/review');
 
 const router = express.Router();
 
 router.get('/', async (req, res) => {
   try {
-    const reviews = await Review.find();
-    res.status(200).send(reviews);
+    const features = await Feature.find();
+    res.status(200).send(features);
   } catch (err) {
-    res.status(400).send(err);
+    console.log('err: ', err);
   }
 });
 
+// Feature does not need to have POST, PATCH, DELETE requests
+// but it's there just in case 
+
 router.post('/', async (req, res) => {
-  // Get user input and make it an object
-  const newReview = new Review({
-    username: req.body.username,
-    thumbnail: req.body.thumbnail,
-    resident: req.body.resident,
-    type: req.body.type,
-    posted: req.body.posted,
-    message: req.body.message,
+  const newFeature = new Feature({
+    name: req.body.name,
     liked: req.body.liked,
   });
   try {
-    const saved = await newReview.save();
+    newFeature.save();
     res.status(201).send('saved');
   } catch (err) {
     res.status(400).send(err);
   }
 });
-
 router.patch('/:id', async (req, res) => {
   const {id} = req.params;
   const updateObj = {
-    username: req.body.username,
-    thumbnail: req.body.thumbnail,
-    resident: req.body.resident,
-    type: req.body.type,
-    posted: req.body.posted,
-    message: req.body.message,
+    name: req.body.name,
     liked: req.body.liked,
   };
   try {
@@ -49,11 +40,12 @@ router.patch('/:id', async (req, res) => {
     res.status(400).send(err);
   }
 });
+
 router.delete('/:id', async (req, res) => {
   const { id } = req.params;
   try {
-    const deleted = await Review.findByIdAndDelete(id);
-    res.status(200).send(deleted);
+    const deleted = await Feature.findByIdAndDelete(id);
+    res.status(200).send('deleted');
   } catch (err) {
     res.status(400).send(err);
   }

@@ -5,7 +5,6 @@ const OUTDIR = path.join(__dirname, 'public');
 
 module.exports = {
   mode: 'development',
-  watch: true,
   entry: `${ENTRYDIR}/index.jsx`,
   output: {
     filename: 'bundle.js',
@@ -14,7 +13,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx$/,
+        test: /\.jsx?$/,
         exclude: /node_modules/,
         include: ENTRYDIR,
         use: {
