@@ -1,27 +1,37 @@
 const mongoose = require('mongoose');
+require('dotenv').config({ path: 'variables.env' });
 
-const ReviewSchema = mongoose.Schema({
-  name: {
-    type: String,
-    unique: true
-  },
-  features: [{
-    content: String,
-    total_votes: Number,
-    liked: Number
-  }],
-  contents: [{
-    username: String,
-    thumbnails: String,
-    resident: Boolean,
-    type: String,
-    posted: {
-      type: Date,
-      default: Date.now
-    },
-    message: String,
-    liked: Number
-  }]
+const FeatureSchema = new mongoose.Schema({
+  name: String,
+  liked: Number,
 });
 
-module.exports = mongoose.model('Review', ReviewSchema);
+const ReviewSchema = new mongoose.Schema({
+  username: String,
+  thumbnail: String,
+  resident: Boolean,
+  type: String,
+  posted: {
+    type: Date,
+    default: Date.now,
+  },
+  message: String,
+  liked: Number,
+});
+
+const Feature = mongoose.model('feature', FeatureSchema);
+const Review = mongoose.model('review', ReviewSchema);
+
+mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true }, () => {
+  console.log('Connected to MongoDB');
+});
+
+const db = mongoose.connection;
+
+db.on('error', () => { console.log('Error connection to MongoDB'); });
+
+module.exports = {
+  Feature,
+  Review,
+  db,
+};

@@ -5,25 +5,24 @@ const OUTDIR = path.join(__dirname, 'public');
 
 module.exports = {
   mode: 'development',
-  watch: true,
   entry: `${ENTRYDIR}/index.jsx`,
   output: {
     filename: 'bundle.js',
-    path: OUTDIR
+    path: OUTDIR,
   },
   module: {
     rules: [
       {
-        test: /\.jsx$/,
+        test: /\.jsx?$/,
         exclude: /node_modules/,
         include: ENTRYDIR,
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env', '@babel/preset-react']
-          }
-        }
-      }
-    ]
-  }
-}
+            presets: ['@babel/preset-env', '@babel/preset-react'],
+          },
+        },
+      },
+    ],
+  },
+};
