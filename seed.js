@@ -1,36 +1,32 @@
 const faker = require('faker');
-const path = require('path');
-const fs = require('fs');
-const {
-  S3Client,
-  PutObjectCommand,
-  CreateBucketCommand
-} = require("@aws-sdk/client-s3");
 const { Review, Feature, db } = require('./server/Models/review');
 
-const createFeature = () => {
+const createFeature = (name) => {
+  // get random number between min to max
+  let min = 85;
+  let max = 129;   
+  let randomNumber = (Math.floor(Math.random() * (max - min + 1)) + min);
   const feature = {};
-  feature.name = faker.lorem.words();
-  feature.liked = Math.floor(Math.random() * 130); 
+  feature.name = name;
+  feature.liked = randomNumber; 
   return feature;
 };
 
-// fs.writeFileSync(path.join(__dirname,''), people, (err, docs) => {
-//   if(err) console.log(err);
-//   else {
-//     console.log('file written: ', docs);
-//   }
-// })
-
-const createReview = () => {
+const createReview = (n) => {
   const typeGenerator = () => {
     const possibleTypes = ['community','dog owners','parents','commute'];
     const randomNum = Math.floor(Math.random() * 4);
     return possibleTypes[randomNum];
   }
+  const urlGenerator = (num) => {
+    // get a random picture from s3 and return the link 
+    // limit is 32 because there're only 32 pics stored on aws-s3 for now 
+    // const randomNum = Math.floor(Math.random() * 32);
+    return `https://hack-reactor-images.s3-us-west-1.amazonaws.com/people/person-${num}.jpg`
+  }
   const review = {};
   review.username = faker.name.findName();
-  review.thumbnail = faker.image.people(); // get images and load it to S3, then use it for url
+  review.thumbnail = urlGenerator(n); // loading images from aws-S3
   review.resident = faker.random.boolean();
   review.type = typeGenerator(); 
   review.posted = faker.date.past();
@@ -39,41 +35,67 @@ const createReview = () => {
   return review;
 };
 
-// generates 16 random features 
+// generates 16 features 
 const getFeatures = () => {
+  const possibleFeaturesNames = [
+  'It\'s dog friendly',
+  'There are sidewalks',
+  'It\'s walkable to restaurants',
+  'It\'s walkable to grocery stores', 
+  'People would walk alone at night',
+  'Streets are well-lit',
+  'Kids play outside',
+  'There\'s holiday spirit',
+  'Neighbors are friendly',
+  'It\'s quiet',
+  'They plan to stay for at least 5 years',
+  'Parking is easy',
+  'Car is needed',
+  'There\'s wildlife',
+  'Yards are well-kept',
+  'There are community events'
+  ];
   const sampleFeatures = [];
   for (let i = 0; i < 16; i ++) {
-    const newFeature = createFeature();
+    const newFeature = createFeature(possibleFeaturesNames[i]);
     sampleFeatures.push(newFeature);
   }
   return sampleFeatures;
 };
 
 const getReviews = (num) => {
+  // num should be lesser than 32 because there're only 32 pic stored on s-3 for now 
   const sampleReviews = [];
-  for (let i = 0; i < num; i ++) {
-    const newReview = createReview();
+  for (let i = 0; i < num; i++) {
+    const newReview = createReview(i);
     sampleReviews.push(newReview);
   }
   return sampleReviews;
 };
 
 const seedData = (num) => {
+  db.dropDatabase((err, result) => {
+    if(err) console.log('err: ', err);
+    else {
+      console.log('Dropped old data')
+    }
+  });
   Feature.create(getFeatures(), (err) => {
     if (err) {
       console.log('err: ', err);
     } else {
-      console.log('features are set');
+      console.log('New features are set');
     }
   });
   Review.create(getReviews(num), (err) => {
     if (err) {
       console.log('err: ', err);
     } else {
-      console.log('reviews are set');
+      console.log('New reviews are set and connection closed');
       db.close();
     }
   });
 };
 
+// num should be lesser than 32 because there're only 32 pic stored on s-3 for now 
 seedData(21);
