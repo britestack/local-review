@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledBackDrop = styled.div`
+  /* display: inline; */
   width: 100%;
   height: 100%;
   position: fixed;
@@ -11,8 +12,32 @@ const StyledBackDrop = styled.div`
   background-color: rgba(0, 0, 0, 0.5);
 `;
 
-const backdrop = (props) => (
-  props.show ? <StyledBackDrop onClick={props.clicked} /> : null
+const Backdrop = (props) => (
+  <StyledBackDrop onClick={props.clicked} />
 );
 
-export default backdrop;
+
+const StyledModal = styled.div`
+  position: fixed;
+  z-index: 200;
+  border: 1px solid #ccc;
+  background: black;
+  box-shadow: 1px 1px 1px black;
+  left: 15%;
+  top: 10%;
+  box-sizing: border-box;
+   @media (min-width: 600px) {
+   left: calc(50% - 250px);
+  }
+`;
+
+const Modal = (props) => (
+  <>
+    <Backdrop clicked={props.modalClosed} />
+    <StyledModal>
+      {props.children}
+    </StyledModal>
+  </>
+);
+
+export default Modal;

@@ -5,6 +5,7 @@ import Reviews from './Reviews.jsx';
 import axios from 'axios';
 
 const StyledApp = styled.div`
+  font-family: 'Cabin', sans-serif;
   padding: .8rem;
   box-sizing: border-box;
   background-color: #f5f6f7;

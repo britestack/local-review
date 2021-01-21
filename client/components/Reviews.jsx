@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import styled, { keyframes } from 'styled-components';
 import axios from 'axios';
 import ReviewItem from './ReviewItem.jsx';
-import Modal from './UI/Modal/Modal.jsx';
-import SingleReview from './SingleReview.jsx';
+import SingleReview from './UI/Modal/SingleReviewModal.jsx';
 import AllReviewModal from './AllReview.jsx';
 import NextButton from './NextButton.jsx';
 import PrevButton from './PrevButton.jsx';
@@ -24,6 +23,7 @@ const StyledReviews = styled.div`
     overflow: hidden;
   }
   .nav {
+    cursor: pointer;
     color: rgb(59, 65, 68);
     font-size: 16px;
     line-height: 1.5;
@@ -76,6 +76,7 @@ const StyledReviews = styled.div`
     transform: ${props => props.slide ? 'translateX(-860px)' : '0%'}
   }
   .items{
+    cursor: pointer;
     border-style: solid;
     border-color: transparent;
     border-width: 16px 8px 0px;
@@ -161,13 +162,12 @@ class Reviews extends Component {
     ));
     return (
       <>
+        {this.state.showingSingle ? <SingleReview close={this.singleReviewCancelHandler} review={this.state.selectedReview} /> : null}
         {/*  Modals live here  */}
-        <Modal show={this.state.showing} modalClosed={this.singleReviewCancelHandler}>
-          <SingleReview review={this.state.selectedReview} />
-        </Modal >
         {/* <Modal show={this.state.showing} modalClosed={this.singleReviewCancelHandler}>
           <AllReviewModal reviews={all} />
         </Modal > */}
+        {/* {this.state.showingSingle ? <SingleReview review={this.state.selectedReview} modalClose={this.singleReviewCancelHandler} /> : null} */}
         <StyledReviews slide={this.state.slide}>
           <div className="container">
             <div className="nav">
