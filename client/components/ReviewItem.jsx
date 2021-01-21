@@ -28,8 +28,9 @@ const StyledReview = styled.div`
 
 const ReviewItem = (props) => {
   const time = props.review.posted;
+  const id = props.review._id;
   return (
-    <StyledReview>
+    <StyledReview onClick={() => props.selected(id)}>
       <div className="topPart">
         <img src={props.review.thumbnail} alt="" />
         {props.review.username}
@@ -39,7 +40,7 @@ const ReviewItem = (props) => {
       <div className="bottomPart">
         <p>{props.review.message}</p>
       </div>
-    </StyledReview>
+    </StyledReview >
   )
 };
 

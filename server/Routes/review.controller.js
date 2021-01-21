@@ -12,6 +12,16 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.get('/:id', async (req, res) => {
+  const {id} = req.params;
+  try {
+    const review = await Review.findById(id);
+    res.status(200).send(review);
+  } catch (err) {
+    res.status(400).send(err.message);
+  }
+});
+
 router.post('/', async (req, res) => {
   // Get user input and make it an object
   const newReview = new Review({
