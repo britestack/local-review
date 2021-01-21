@@ -12,7 +12,7 @@ const StyledSvg = styled.svg`
 `;
 
 const StyledSvgPath = styled.path`
-  fill: #FF8C68;
+  fill: rgb(59, 65, 68);
 `;
 
 const Restaurant = () => (

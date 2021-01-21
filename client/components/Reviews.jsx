@@ -16,6 +16,10 @@ const StyledReviews = styled.div`
   color:#3b4144;
   letter-spacing: -0.1px;
   line-height: 24px;
+  border: 2px green solid;
+  /* button:hover, .items:hover  {
+    cursor: pointer;
+  } */
   .container {
     overflow: hidden;
   }
@@ -43,9 +47,6 @@ const StyledReviews = styled.div`
       border-width: 1px;
       border-style: solid;
       cursor: pointer;
-      :hover {
-        background-color: #DDD9D9;
-      }
       display: inline-block;
       color: rgb(59, 65, 68);
       text-align: center;
@@ -58,10 +59,12 @@ const StyledReviews = styled.div`
     }
   }
   .slider {
+    /* margin-top: 16px; */
     position: relative;
     font-size: 16px;
     line-height: 1.5;
     letter-spacing: -0.1px;
+    /* transition: transform 0.45s ease 0s; */
   }
   .responsiveWrapper {
     display: flex;
@@ -70,7 +73,7 @@ const StyledReviews = styled.div`
     margin-top: -16px;
     flex-wrap: nowrap;
     transition: all .4s ease 0s;
-    transform: ${props => props.slide ? 'translateX(-61.5rem)' : '0'}
+    transform: ${props => props.slide ? 'translateX(-860px)' : '0%'}
   }
   .items{
     border-style: solid;
@@ -83,6 +86,26 @@ const StyledReviews = styled.div`
     @media (min-width: 570px){
       width: 48%;
     }
+  }
+  .nextButton {
+    position: absolute;
+    display: inline;
+    height: 32px;
+    width: 32px;
+    border-radius: 1rem;
+    bottom: 12rem;
+    right: -1rem;
+    background-color: salmon;
+  }
+  .previousButton {
+    position: absolute;
+    display: inline;
+    height: 32px;
+    width: 32px;
+    border-radius: 1rem;
+    bottom: 12rem;
+    left: -1rem;
+    background-color: salmon;
   }
 `;
 
@@ -139,7 +162,7 @@ class Reviews extends Component {
     return (
       <>
         {/*  Modals live here  */}
-        <Modal show={this.state.showingSingle} modalClosed={this.singleReviewCancelHandler}>
+        <Modal show={this.state.showing} modalClosed={this.singleReviewCancelHandler}>
           <SingleReview review={this.state.selectedReview} />
         </Modal >
         {/* <Modal show={this.state.showing} modalClosed={this.singleReviewCancelHandler}>

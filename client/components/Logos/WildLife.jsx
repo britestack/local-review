@@ -12,7 +12,7 @@ const StyledSvg = styled.svg`
 `;
 
 const StyledSvgPath = styled.path`
-  fill: #C3D600;
+  fill: rgb(59, 65, 68);
 `;
 
 const WildLife = () => (

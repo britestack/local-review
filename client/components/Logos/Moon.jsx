@@ -12,7 +12,7 @@ const StyledSvg = styled.svg`
 `;
 
 const StyledSvgPath = styled.path`
-  fill: #00A3B1;
+  fill: rgb(59, 65, 68);
 `;
 
 const Moon = () => (

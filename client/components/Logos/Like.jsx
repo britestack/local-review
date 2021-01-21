@@ -12,7 +12,7 @@ const StyledSvg = styled.svg`
 `;
 
 const StyledSvgPath = styled.path`
-  fill: #869099;
+  fill: rgb(59, 65, 68);
 `;
 
 const LikeLogo = () => (

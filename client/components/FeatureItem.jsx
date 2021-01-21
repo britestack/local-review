@@ -40,7 +40,6 @@ const StyledItem = styled.div`
   }
   .percentage {
     position: absolute;
-    color: rgb(0, 120, 130);
     top: 10px;
     right: 14px;
     font-size: 20px;
