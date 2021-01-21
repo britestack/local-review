@@ -4,13 +4,22 @@ const { Review, Feature, db } = require('./server/Models/review');
 const createFeature = (name) => {
   // get random number between min to max
   let min = 85;
-  let max = 129;   
+  let max = 129;
   let randomNumber = (Math.floor(Math.random() * (max - min + 1)) + min);
   const feature = {};
   feature.name = name;
-  feature.liked = randomNumber; 
+  feature.liked = randomNumber;
   return feature;
 };
+
+// const backgroundGenerator = () => {
+//   const backgroundColors = ['rgb(0, 173, 187)', 'rgb(250, 140, 104)', 'rgb(206, 182, 255)', 'rgb(116, 6, 49)', 'rgb(242, 196, 48)', 'rgb(5, 34, 134)', 'rgb(255, 94, 63)'];
+//   const popped = backgroundColors.pop();
+//   console.log('backgroundColors: ',backgroundColors, 'popped: ', popped);
+// }
+
+// backgroundGenerator();
+
 
 const createReview = (n) => {
   const typeGenerator = () => {
@@ -19,29 +28,37 @@ const createReview = (n) => {
     return possibleTypes[randomNum];
   }
   const urlGenerator = (num) => {
-    // get a random picture from s3 and return the link 
-    // limit is 32 because there're only 32 pics stored on aws-s3 for now 
+    // get a random picture from s3 and return the link
+    // limit is 32 because there're only 32 pics stored on aws-s3 for now
     // const randomNum = Math.floor(Math.random() * 32);
     return `https://hack-reactor-images.s3-us-west-1.amazonaws.com/people/person-${num}.jpg`
   }
+
+  // const backgroundGenerator = () => {
+  //   const backgroundColors = ['rgb(0, 173, 187)', 'rgb(250, 140, 104)', 'rgb(206, 182, 255)', 'rgb(116, 6, 49)', 'rgb(242, 196, 48)', 'rgb(5, 34, 134)', 'rgb(255, 94, 63)'];
+  //   const popped = backgroundColors.pop();
+  //   console.log('backgroundColors: ',backgroundColors, 'popped: ', popped);
+  // }
+
+  // backgroundGenerator
   const review = {};
   review.username = faker.name.findName();
   review.thumbnail = urlGenerator(n); // loading images from aws-S3
   review.resident = faker.random.boolean();
-  review.type = typeGenerator(); 
+  review.type = typeGenerator();
   review.posted = faker.date.past();
   review.message = faker.lorem.sentence();
-  review.liked = Math.floor(Math.random() * 10); 
+  review.liked = Math.floor(Math.random() * 10);
   return review;
 };
 
-// generates 16 features 
+// generates 16 features
 const getFeatures = () => {
   const possibleFeaturesNames = [
   'It\'s dog friendly',
   'There are sidewalks',
   'It\'s walkable to restaurants',
-  'It\'s walkable to grocery stores', 
+  'It\'s walkable to grocery stores',
   'People would walk alone at night',
   'Streets are well-lit',
   'Kids play outside',
@@ -64,7 +81,7 @@ const getFeatures = () => {
 };
 
 const getReviews = (num) => {
-  // num should be lesser than 32 because there're only 32 pic stored on s-3 for now 
+  // num should be lesser than 32 because there're only 32 pic stored on s-3 for now
   const sampleReviews = [];
   for (let i = 0; i < num; i++) {
     const newReview = createReview(i);
@@ -97,5 +114,5 @@ const seedData = (num) => {
   });
 };
 
-// num should be lesser than 32 because there're only 32 pic stored on s-3 for now 
-seedData(21);
+// num should be lesser than 32 because there're only 32 pic stored on s-3 for now
+// seedData(21);
