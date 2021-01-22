@@ -6,13 +6,12 @@ import Smily from '../../Logos/Smily.jsx'
 import CloseButton from '../../Logos/CloseButton.jsx'
 
 const StyledReview = styled.div`
-    border: 1px solid rgb(250, 140, 104);
     border-radius: 8px;
     padding: 32px;
     width: 100%;
     height: 667px;
     color: rgb(255, 255, 255);
-    background-color: rgb(250, 140, 104);
+    background-color: ${props => props.color};
     max-width: 375px;
     max-height: 667px;
     display: flex;
@@ -45,6 +44,8 @@ const StyledReview = styled.div`
     overflow: auto;
     flex: 1 1 auto;
     margin: 24px 0px;
+    padding: 32px;
+    font-size: 28px;
   }
   .bottomPart {
     position: relative;
@@ -68,7 +69,7 @@ const SingleReview = (props) => {
   return (
     <>
       <BackDrop modalClosed={props.close}>
-        <StyledReview>
+        <StyledReview color={props.review.background}>
           <div className="topPart">
             <div className="userInfo">
               <div className="userInfo-top"><img src={props.review.thumbnail} alt="" /></div>
@@ -80,7 +81,7 @@ const SingleReview = (props) => {
             </div>
             <div className="closeButton" onClick={props.close}><CloseButton /></div>
           </div>
-          <div className="middlePart ">{props.review.message}</div>
+          <div className="middlePart ">"{props.review.message}"</div>
           <div className="bottomPart">
             <div className="smilyLogo"><Smily /><span className="liked">{props.review.liked}</span></div>
             <div className="flag">Flag</div>

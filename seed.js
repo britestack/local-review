@@ -24,39 +24,67 @@ const createReview = (n) => {
     // const randomNum = Math.floor(Math.random() * 32);
     return `https://hack-reactor-images.s3-us-west-1.amazonaws.com/people/person-${num}.jpg`
   }
+  const colorGenerator = (num) => {
+    const colors = {
+      0: '#00adbb',
+      1: '#fa9668',
+      2: '#ceb6ff',
+      3: '#740631',
+      4: '#f2c430',
+      5: '#052286',
+      6: '#ff5e3f',
+      7: '#00adbb',
+      8: '#00adbb',
+      9: '#fa9668',
+      10: '#ceb6ff',
+      11: '#740631',
+      12: '#f2c430',
+      13: '#052286',
+      14: '#ff5e3f',
+      15: '#00adbb',
+      16: '#00adbb',
+      17: '#fa9668',
+      18: '#ceb6ff',
+      19: '#740631',
+      20: '#f2c430',
+      21: '#052286'
+    }
+    return colors[num]
+  }
   const review = {};
   review.username = faker.name.findName();
   review.thumbnail = urlGenerator(n); // loading images from aws-S3
   review.resident = faker.random.boolean();
   review.type = typeGenerator();
   review.posted = faker.date.past();
-  review.message = faker.lorem.slug();
+  review.message = faker.lorem.paragraph();
   review.liked = Math.floor(Math.random() * 10);
+  review.background = colorGenerator(n);
   return review;
 };
 
 // generates 16 features
 const getFeatures = () => {
-  const possibleFeaturesNames = [
-  'It\'s dog friendly',
-  'There are sidewalks',
-  'It\'s walkable to restaurants',
-  'It\'s walkable to grocery stores',
-  'People would walk alone at night',
-  'Streets are well-lit',
-  'Kids play outside',
-  'There\'s holiday spirit',
-  'It\'s quiet',
-  'Neighbors are friendly',
-  'They plan to stay for at least 5 years',
-  'Parking is easy',
-  'Car is needed',
-  'There\'s wildlife',
-  'Yards are well-kept',
-  'There are community events'
-  ];
+  const possibleFeaturesNames = {
+    0: 'It\'s dog friendly',
+    1:'There are sidewalks',
+    2: 'It\'s walkable to restaurants',
+    3: 'It\'s walkable to grocery stores',
+    4: 'People would walk alone at night',
+    5: 'Streets are well-lit',
+    6: 'Kids play outside',
+    7: 'There\'s holiday spirit',
+    8: 'It\'s quiet',
+    9: 'Neighbors are friendly',
+    10: 'They plan to stay for at least 5 years',
+    11: 'Parking is easy',
+    12: 'Car is needed',
+    13: 'There\'s wildlife',
+    14: 'Yards are well-kept',
+    15: 'There are community events'
+  };
   const sampleFeatures = [];
-  for (let i = 0; i < 16; i+=1) {
+  for (let i = 0; i < 16; i++) {
     const newFeature = createFeature(possibleFeaturesNames[i]);
     sampleFeatures.push(newFeature);
   }

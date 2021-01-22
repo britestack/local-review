@@ -17,6 +17,7 @@ const ReviewSchema = new mongoose.Schema({
   },
   message: String,
   liked: Number,
+  background: String
 });
 
 const Feature = mongoose.model('feature', FeatureSchema);

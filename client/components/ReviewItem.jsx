@@ -6,10 +6,11 @@ import Smily from './Logos/Smily.jsx'
 const StyledReview = styled.div`
   width: 10.2rem;
   height: 19rem;
+  color: white;
   padding: 28px 32px 10px 32px;
   /* padding: 32px; */
   border-radius: 8px;
-  background-color:#00adbb;
+  background-color: ${props => props.color};
   display: flex;
   flex-direction: column;
   letter-spacing: -0.1px;
@@ -34,13 +35,17 @@ const StyledReview = styled.div`
     }
   }
   .middlePart {
-    padding: 24px 0px;
+    background-image: linear-gradient(rgba(0, 173, 187, .6));
+    overflow: hidden;
+    font-size: 24px;
+    padding: 5px;
     flex: 2;
   }
   .bottomPart {
     color: white;
-    position: relative;
+    overflow: hidden;
     display: flex;
+    position: relative;
     justify-content: space-between;
     align-items: flex-end;
     flex: 1;
@@ -63,7 +68,7 @@ const ReviewItem = (props) => {
   const time = props.review.posted;
   const id = props.review._id;
   return (
-    <StyledReview onClick={() => props.selected(id)}>
+    <StyledReview onClick={() => props.selected(id)} color={props.review.background}>
       <div className="topPart">
         <div><img src={props.review.thumbnail} alt="" /></div>
         <div>
@@ -72,7 +77,7 @@ const ReviewItem = (props) => {
                 • {moment(time).startOf('month').fromNow()}</div>
         </div>
       </div>
-      <div className="middlePart ">{props.review.message}</div>
+      <div className="middlePart ">"{props.review.message}"</div>
       <div className="bottomPart">
         <div className="smilyLogo"><Smily /><span className="liked">{props.review.liked}</span></div>
         <div className="flag">Flag</div>

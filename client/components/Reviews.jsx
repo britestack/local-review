@@ -35,8 +35,15 @@ const StyledReviews = styled.div`
     }
     button {
       &:hover {
-        background: #DDDADA;
-      }
+        background-color: #DDDADA;
+      };
+      &:focus{
+        outline: 0;
+        -webkit-box-shadow: none;
+        color: rgb(0, 120, 130);
+        background-color: rgb(255, 255, 255);
+        border-color: solid 2px rgb(232, 233, 234);
+      };
       background-color: transparent;
       border-color: transparent;
       /* margin-bottom: 16px; */
@@ -197,7 +204,6 @@ class Reviews extends Component {
           </div>
           {/* Buttons live here  */}
           <NextButton slide={this.state.slide} all={all} click={() => {
-            console.log('next button clicked')
             this.setState({
               slide: true
             })
