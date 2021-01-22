@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import moment from 'moment';
 import styled from 'styled-components';
 import Smily from './Logos/Smily.jsx'
@@ -64,26 +64,54 @@ const StyledReview = styled.div`
   }
 `;
 
-const ReviewItem = (props) => {
-  const time = props.review.posted;
-  const id = props.review._id;
-  return (
-    <StyledReview onClick={() => props.selected(id)} color={props.review.background}>
-      <div className="topPart">
-        <div><img src={props.review.thumbnail} alt="" /></div>
-        <div>
-          <div className="username">{props.review.username}</div>
-          <div className="userInfo">{props.review.resident === true ? 'Resident' : 'Visitor'}{' '}
+class ReviewItem extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      liked: this.props.review.liked,
+      review: this.props.review,
+      smilyClicked: false
+    }
+    this.smilyToggleHandler = this.smilyToggleHandler.bind(this);
+  }
+  smilyToggleHandler() {
+    let liked = this.state.liked;
+    if (!this.state.smilyClicked) {
+      liked++;
+      this.setState({
+        liked,
+        smilyClicked: true
+      })
+    } else {
+      liked--;
+      this.setState({
+        liked,
+        smilyClicked: false
+      })
+    }
+  }
+  render() {
+    const time = this.props.review.posted;
+    const id = this.props.review._id;
+    return (
+      <StyledReview color={this.state.review.background}>
+        <div className="topPart" onClick={() => this.props.selected(id)} >
+          <div><img src={this.state.review.thumbnail} alt="" /></div>
+          <div>
+            <div className="username">{this.state.review.username}</div>
+            <div className="userInfo">{this.state.review.resident === true ? 'Resident' : 'Visitor'}{' '}
                 • {moment(time).startOf('month').fromNow()}</div>
+          </div>
         </div>
-      </div>
-      <div className="middlePart ">"{props.review.message}"</div>
-      <div className="bottomPart">
-        <div className="smilyLogo"><Smily /><span className="liked">{props.review.liked}</span></div>
-        <div className="flag">Flag</div>
-      </div>
-    </StyledReview>
-  )
-};
+        <div className="middlePart " onClick={() => this.props.selected(id)} >"{this.state.review.message}"</div>
+        <div className="bottomPart">
+          <div className="smilyLogo" onClick={this.smilyToggleHandler}><Smily /><span className="liked">{this.state.liked}</span></div>
+          <div className="flag">Flag</div>
+        </div>
+      </StyledReview>
+    )
+  };
+}
+
 
 export default ReviewItem;
