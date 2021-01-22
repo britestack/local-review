@@ -1,7 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const StyledButton = styled.button`
+const StyledButton = styled.div`
+  &:hover {
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgb(255, 255, 255);
+  };
+  &:active {
+    background-color: rgb(150, 150, 150);
+    border: 1px solid rgb(150, 150, 150);
+  };
   position: absolute;
   left: -.8rem;
   top: calc(50% - 24px);

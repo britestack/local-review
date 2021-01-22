@@ -8,13 +8,14 @@ const StyledFeatures = styled.div`
 `;
 
 const StyledButton = styled.div`
-  color: rgb(59, 65, 68);
-  display: block;
-  padding: 0px 0px 4px;
-  font-size: 16px;
-  line-height: 1.5;
-  letter-spacing: -0.1px;
-  button {
+    &:hover {
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgb(255, 255, 255);
+    };
+    &:active {
+      background-color: rgb(150, 150, 150);
+      border: 1px solid rgb(150, 150, 150);
+    };
     margin: 0px;
     border-radius: 8px;
     border-width: 1px;
@@ -31,7 +32,6 @@ const StyledButton = styled.div`
     color: rgb(59, 65, 68);
     background-color: rgb(255, 255, 255);
     border-color: rgb(205, 209, 212);
-  }
 `;
 
 class Features extends Component {
@@ -48,21 +48,23 @@ class Features extends Component {
       clicked: !this.state.clicked
     })
   }
-  componentDidMount() {
-    const top = this.props.features;
-    if (top) {
-      this.setState({
-        topList: top.slice(0, 6),
-        bottomList: top.slice(6)
-      })
-    }
-  }
+  // componentDidMount() {
+  //   const top = this.props.features;
+  //   if (top) {
+  //     this.setState({
+  //       topList: top.slice(0, 6),
+  //       bottomList: top.slice(6)
+  //     })
+  //   }
+  // }
   render() {
     let topList = [];
     let bottomList = [];
     if (this.props.features) {
       topList = this.props.features.slice(0, 6);
       bottomList = this.props.features.slice(6);
+      console.log('topList: ', topList);
+      console.log('bottomList: ', bottomList);
     }
     return (
       <>
@@ -70,7 +72,7 @@ class Features extends Component {
           <FeatureItem items={topList} />
           {this.state.clicked ? <FeatureItem items={bottomList} /> : null}
         </StyledFeatures>
-        <StyledButton><button onClick={this.toggleHandler}>{this.state.clicked ? 'See Less' : 'See All'}</button></StyledButton>
+        <StyledButton onClick={this.toggleHandler}>{this.state.clicked ? 'See Less' : 'See All'}</StyledButton>
       </>
     )
   }

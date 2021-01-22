@@ -3,6 +3,7 @@ import moment from 'moment';
 import styled from 'styled-components';
 import BackDrop from '../BackDrop.jsx'
 import Smily from '../../Logos/Smily.jsx'
+import CloseButton from '../../Logos/CloseButton.jsx'
 
 const StyledReview = styled.div`
     border: 1px solid rgb(250, 140, 104);
@@ -14,17 +15,51 @@ const StyledReview = styled.div`
     background-color: rgb(250, 140, 104);
     max-width: 375px;
     max-height: 667px;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
   .topPart {
-    /* width: 162px;
-    height: 39px; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .userInfo {
+      display: flex;
+    }
+    .userInfo-mid {
+      padding-left: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      .username {
+      font-size: 24px;
+      font-weight: 800;
+    }
+    }
     img {
-      width: 32px;
-      height: 32px;
-      border-radius: 1rem;
+      width: 45px;
+      height: 45px;
+      border-radius: 1.5rem;
     }
   }
+  .middlePart {
+    overflow: auto;
+    flex: 1 1 auto;
+    margin: 24px 0px;
+  }
   .bottomPart {
-
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .liked {
+      font-size: 22px;
+      position: absolute;
+      top: .2rem;
+      left: 3rem;
+    }
+    .flag {
+      font-size: 20px;
+    }
   }
 `;
 
@@ -35,14 +70,19 @@ const SingleReview = (props) => {
       <BackDrop modalClosed={props.close}>
         <StyledReview>
           <div className="topPart">
-            <img src={props.review.thumbnail} alt="" />
-            {props.review.username}
-            {props.review.resident === true ? 'Resident' : 'Visitor'}
-            {moment(time).startOf('month').fromNow()}
+            <div className="userInfo">
+              <div className="userInfo-top"><img src={props.review.thumbnail} alt="" /></div>
+              <div className="userInfo-mid">
+                <div className="username">{props.review.username}</div>
+                <div>{props.review.resident === true ? 'Resident' : 'Visitor'}{' '}
+              • {moment(time).startOf('month').fromNow()}</div>
+              </div>
+            </div>
+            <div className="closeButton" onClick={props.close}><CloseButton /></div>
           </div>
           <div className="middlePart ">{props.review.message}</div>
           <div className="bottomPart">
-            <div className="smilyLogo"><Smily /></div>
+            <div className="smilyLogo"><Smily /><span className="liked">{props.review.liked}</span></div>
             <div className="flag">Flag</div>
           </div>
         </StyledReview>

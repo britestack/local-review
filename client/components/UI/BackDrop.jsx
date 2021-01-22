@@ -20,9 +20,6 @@ const Backdrop = (props) => (
 const StyledModal = styled.div`
   position: fixed;
   z-index: 200;
-  border: 1px solid #ccc;
-  background: black;
-  box-shadow: 1px 1px 1px black;
   left: 15%;
   top: 10%;
   box-sizing: border-box;

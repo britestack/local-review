@@ -4,11 +4,11 @@ const { Review, Feature, db } = require('./server/Models/review');
 const createFeature = (name) => {
   // get random number between min to max
   let min = 85;
-  let max = 129;   
+  let max = 129;
   let randomNumber = (Math.floor(Math.random() * (max - min + 1)) + min);
   const feature = {};
   feature.name = name;
-  feature.liked = randomNumber; 
+  feature.liked = randomNumber;
   return feature;
 };
 
@@ -19,8 +19,8 @@ const createReview = (n) => {
     return possibleTypes[randomNum];
   }
   const urlGenerator = (num) => {
-    // get a random picture from s3 and return the link 
-    // limit is 32 because there're only 32 pics stored on aws-s3 for now 
+    // get a random picture from s3 and return the link
+    // limit is 32 because there're only 32 pics stored on aws-s3 for now
     // const randomNum = Math.floor(Math.random() * 32);
     return `https://hack-reactor-images.s3-us-west-1.amazonaws.com/people/person-${num}.jpg`
   }
@@ -28,26 +28,26 @@ const createReview = (n) => {
   review.username = faker.name.findName();
   review.thumbnail = urlGenerator(n); // loading images from aws-S3
   review.resident = faker.random.boolean();
-  review.type = typeGenerator(); 
+  review.type = typeGenerator();
   review.posted = faker.date.past();
-  review.message = faker.lorem.sentence();
-  review.liked = Math.floor(Math.random() * 10); 
+  review.message = faker.lorem.slug();
+  review.liked = Math.floor(Math.random() * 10);
   return review;
 };
 
-// generates 16 features 
+// generates 16 features
 const getFeatures = () => {
   const possibleFeaturesNames = [
   'It\'s dog friendly',
   'There are sidewalks',
   'It\'s walkable to restaurants',
-  'It\'s walkable to grocery stores', 
+  'It\'s walkable to grocery stores',
   'People would walk alone at night',
   'Streets are well-lit',
   'Kids play outside',
   'There\'s holiday spirit',
-  'Neighbors are friendly',
   'It\'s quiet',
+  'Neighbors are friendly',
   'They plan to stay for at least 5 years',
   'Parking is easy',
   'Car is needed',
@@ -56,7 +56,7 @@ const getFeatures = () => {
   'There are community events'
   ];
   const sampleFeatures = [];
-  for (let i = 0; i < 16; i ++) {
+  for (let i = 0; i < 16; i+=1) {
     const newFeature = createFeature(possibleFeaturesNames[i]);
     sampleFeatures.push(newFeature);
   }
@@ -64,7 +64,7 @@ const getFeatures = () => {
 };
 
 const getReviews = (num) => {
-  // num should be lesser than 32 because there're only 32 pic stored on s-3 for now 
+  // num should be lesser than 32 because there're only 32 pic stored on s-3 for now
   const sampleReviews = [];
   for (let i = 0; i < num; i++) {
     const newReview = createReview(i);
@@ -97,5 +97,5 @@ const seedData = (num) => {
   });
 };
 
-// num should be lesser than 32 because there're only 32 pic stored on s-3 for now 
+// num should be lesser than 32 because there're only 32 pic stored on s-3 for now
 seedData(21);

@@ -12,7 +12,7 @@ const StyledSvg = styled.svg`
 `;
 
 const StyledSvgPath = styled.path`
-  fill: rgb(59, 65, 68);
+  fill: rgb(195, 214, 0);
 `;
 
 const Yard = () => (

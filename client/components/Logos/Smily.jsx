@@ -2,12 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledWrapper = styled.div`
-  /* display: inline-block; */
+  display: inline-block;
   font-size: 0px;
 `;
 
 const StyledSvg = styled.svg`
-  height: 30px;
+  height: 29px;
   width: 30px;
 `;
 
