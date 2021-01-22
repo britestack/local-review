@@ -5,12 +5,13 @@ import Reviews from './Reviews.jsx';
 import axios from 'axios';
 
 const StyledApp = styled.div`
+  font-family: 'Cabin', sans-serif;
   padding: .8rem;
   box-sizing: border-box;
   background-color: #f5f6f7;
   border: black solid 2px;
-  /* width: 992px;
-  height: 789px; */
+  width: 992px;
+  height: 789px;
   a {
     color: rgb(0, 120, 130);
     text-decoration: none;

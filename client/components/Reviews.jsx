@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import styled, { keyframes } from 'styled-components';
 import axios from 'axios';
 import ReviewItem from './ReviewItem.jsx';
-import Modal from './UI/Modal/Modal.jsx';
-import SingleReview from './SingleReview.jsx';
+import SingleReview from './UI/Modal/SingleReviewModal.jsx';
 import AllReviewModal from './AllReview.jsx';
 import NextButton from './NextButton.jsx';
 import PrevButton from './PrevButton.jsx';
@@ -16,10 +15,6 @@ const StyledReviews = styled.div`
   color:#3b4144;
   letter-spacing: -0.1px;
   line-height: 24px;
-  border: 2px green solid;
-  /* button:hover, .items:hover  {
-    cursor: pointer;
-  } */
   .container {
     overflow: hidden;
   }
@@ -31,8 +26,7 @@ const StyledReviews = styled.div`
     display: flex;
     flex-wrap: nowrap;
     overflow-x: auto;
-    margin-bottom: -18px;
-    padding-bottom: 18px;
+    margin-bottom: 5px;
     @media (min-width: 570px) {
       margin-left: -2px;
     }
@@ -40,9 +34,19 @@ const StyledReviews = styled.div`
       margin-left: 2px;
     }
     button {
+      &:hover {
+        background-color: #DDDADA;
+      };
+      &:focus{
+        outline: 0;
+        -webkit-box-shadow: none;
+        color: rgb(0, 120, 130);
+        background-color: rgb(255, 255, 255);
+        border-color: solid 2px rgb(232, 233, 234);
+      };
       background-color: transparent;
       border-color: transparent;
-      margin-bottom: 16px;
+      /* margin-bottom: 16px; */
       border-radius: 8px;
       border-width: 1px;
       border-style: solid;
@@ -73,39 +77,20 @@ const StyledReviews = styled.div`
     margin-top: -16px;
     flex-wrap: nowrap;
     transition: all .4s ease 0s;
-    transform: ${props => props.slide ? 'translateX(-860px)' : '0%'}
+    transform: ${props => props.slide ? 'translateX(-60.5rem)' : '0'}
   }
   .items{
+    cursor: pointer;
     border-style: solid;
     border-color: transparent;
     border-width: 16px 8px 0px;
-    display: block;
+    /* display: block; */
     @media (min-width: 376px){
       width: 96%;
     }
     @media (min-width: 570px){
       width: 48%;
     }
-  }
-  .nextButton {
-    position: absolute;
-    display: inline;
-    height: 32px;
-    width: 32px;
-    border-radius: 1rem;
-    bottom: 12rem;
-    right: -1rem;
-    background-color: salmon;
-  }
-  .previousButton {
-    position: absolute;
-    display: inline;
-    height: 32px;
-    width: 32px;
-    border-radius: 1rem;
-    bottom: 12rem;
-    left: -1rem;
-    background-color: salmon;
   }
 `;
 
@@ -161,13 +146,8 @@ class Reviews extends Component {
     ));
     return (
       <>
-        {/*  Modals live here  */}
-        <Modal show={this.state.showing} modalClosed={this.singleReviewCancelHandler}>
-          <SingleReview review={this.state.selectedReview} />
-        </Modal >
-        {/* <Modal show={this.state.showing} modalClosed={this.singleReviewCancelHandler}>
-          <AllReviewModal reviews={all} />
-        </Modal > */}
+        {/* Modals live here  */}
+        {this.state.showingSingle ? <SingleReview close={this.singleReviewCancelHandler} review={this.state.selectedReview} /> : null}
         <StyledReviews slide={this.state.slide}>
           <div className="container">
             <div className="nav">
@@ -224,7 +204,6 @@ class Reviews extends Component {
           </div>
           {/* Buttons live here  */}
           <NextButton slide={this.state.slide} all={all} click={() => {
-            console.log('next button clicked')
             this.setState({
               slide: true
             })

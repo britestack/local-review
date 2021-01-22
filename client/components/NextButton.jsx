@@ -1,7 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const StyledButton = styled.button`
+const StyledButton = styled.div`
+  &:hover {
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgb(255, 255, 255);
+  };
+  &:active {
+    background-color: rgb(150, 150, 150);
+    border: 1px solid rgb(150, 150, 150);
+  };
   position: absolute;
   right: -.8rem;
   top: calc(50% - 24px);
@@ -19,8 +27,8 @@ const StyledButton = styled.button`
   .dynamicDisplay {
     font-size: 10px;
     position: absolute;
-    top: 8px;
-    right: 4px;
+    top: .5rem;
+    right: .6rem;
     font-size: 16px;
     font-weight: bold;
   }
