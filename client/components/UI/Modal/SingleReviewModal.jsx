@@ -52,6 +52,9 @@ const StyledReview = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    .smilyLogo:hover {
+      cursor: pointer;
+    }
     .liked {
       font-size: 22px;
       position: absolute;
@@ -59,46 +62,67 @@ const StyledReview = styled.div`
       left: 3rem;
     }
     .flag {
+      &:hover {
+        cursor: pointer;
+      }
       font-size: 20px;
     }
   }
 `;
 
-const SingleReview = (props) => {
-  const time = props.review.posted;
-  return (
-    <>
-      <BackDrop modalClosed={props.close}>
-        <StyledReview color={props.review.background}>
+class SingleReview extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      liked: props.review.liked,
+      smilyClicked: false
+    }
+    this.smilyToggleHandler = this.smilyToggleHandler.bind(this);
+  }
+  smilyToggleHandler() {
+    let liked = this.state.liked;
+    if (!this.state.smilyClicked) {
+      liked++;
+      this.setState({
+        liked,
+        smilyClicked: true
+      })
+    } else {
+      liked--;
+      this.setState({
+        liked,
+        smilyClicked: false
+      })
+    }
+  }
+  render() {
+    const time = this.props.review.posted;
+    return (
+      <BackDrop modalClosed={this.props.close}>
+        <StyledReview color={this.props.review.background}>
           <div className="topPart">
             <div className="userInfo">
-              <div className="userInfo-top"><img src={props.review.thumbnail} alt="" /></div>
+              <div className="userInfo-top"><img src={this.props.review.thumbnail} alt="" /></div>
               <div className="userInfo-mid">
-                <div className="username">{props.review.username}</div>
-                <div>{props.review.resident === true ? 'Resident' : 'Visitor'}{' '}
+                <div className="username">{this.props.review.username}</div>
+                <div>{this.props.review.resident === true ? 'Resident' : 'Visitor'}{' '}
               • {moment(time).startOf('month').fromNow()}</div>
               </div>
             </div>
-            <div className="closeButton" onClick={props.close}><CloseButton /></div>
+            <div className="closeButton" onClick={this.props.close}><CloseButton /></div>
           </div>
-          <div className="middlePart ">"{props.review.message}"</div>
+          <div className="middlePart ">"{this.props.review.message}"</div>
           <div className="bottomPart">
-            <div className="smilyLogo"><Smily /><span className="liked">{props.review.liked}</span></div>
-            <div className="flag">Flag</div>
+            <div className="smilyLogo" onClick={this.smilyToggleHandler}><Smily /><span className="liked">{this.state.liked}</span></div>
+            <div className="flag" onClick={this.props.showflag}>Flag</div>
           </div>
         </StyledReview>
       </BackDrop>
-    </>
-  )
+    )
+  }
 };
 
 export default SingleReview;
-
-
-
-
-
-
 
 // import React from 'react';
 // import styled from 'styled-components';
@@ -118,19 +142,19 @@ export default SingleReview;
 //   box-shadow: 1px 1px 1px black;
 //   box-sizing: border-box;
 //   /* transition: all .3s ease-out;
-//   transform: ${props => props.show ? 'translateY(0)' : 'translateY(-160vh)'}; */
-//   /* opacity: ${props => props.show ? '1' : '0'}; */
+//   transform: ${this.props => this.props.show ? 'translateY(0)' : 'translateY(-160vh)'}; */
+//   /* opacity: ${this.props => this.props.show ? '1' : '0'}; */
 //   opacity: 1;
 //   @media(min - width: 600px) {
 //     left: calc(50 % - 250px);
 //   }
 // `;
 
-// const modal = (props) => (
+// const modal = (this.props) => (
 //   <>
-//     <Backdrop show={true} clicked={props.modalClosed} />
+//     <Backdrop show={true} clicked={this.props.modalClosed} />
 //     <StyledModal>
-//       {props.children}
+//       {this.props.children}
 //     </StyledModal>
 //   </>
 // );

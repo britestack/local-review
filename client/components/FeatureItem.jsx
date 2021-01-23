@@ -42,6 +42,7 @@ const StyledItem = styled.div`
     position: absolute;
     top: 10px;
     right: 14px;
+    color: rgb(0, 120, 130);
     font-size: 20px;
     font-weight: bold;
   }

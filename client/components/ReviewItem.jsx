@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 import moment from 'moment';
 import styled from 'styled-components';
 import Smily from './Logos/Smily.jsx'
 
 const StyledReview = styled.div`
-  width: 10.2rem;
+  width: ${props => props.width ? props.width : '10.2rem'};
   height: 19rem;
   color: white;
   padding: 28px 32px 10px 32px;
@@ -49,6 +49,9 @@ const StyledReview = styled.div`
     justify-content: space-between;
     align-items: flex-end;
     flex: 1;
+    .smilyLogo:hover {
+      cursor: pointer;
+    }
     .liked {
       font-size: 18px;
       position: absolute;
@@ -57,6 +60,7 @@ const StyledReview = styled.div`
     }
     .flag {
       position: absolute;
+      cursor: pointer;
       top: 2.3rem;
       right: 0;
       font-size: 16px;
@@ -64,26 +68,53 @@ const StyledReview = styled.div`
   }
 `;
 
-const ReviewItem = (props) => {
-  const time = props.review.posted;
-  const id = props.review._id;
-  return (
-    <StyledReview onClick={() => props.selected(id)} color={props.review.background}>
-      <div className="topPart">
-        <div><img src={props.review.thumbnail} alt="" /></div>
-        <div>
-          <div className="username">{props.review.username}</div>
-          <div className="userInfo">{props.review.resident === true ? 'Resident' : 'Visitor'}{' '}
+class ReviewItem extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      liked: this.props.review.liked,
+      review: this.props.review,
+      smilyClicked: false
+    }
+    this.smilyToggleHandler = this.smilyToggleHandler.bind(this);
+  }
+  smilyToggleHandler() {
+    let liked = this.state.liked;
+    if (!this.state.smilyClicked) {
+      liked++;
+      this.setState({
+        liked,
+        smilyClicked: true
+      })
+    } else {
+      liked--;
+      this.setState({
+        liked,
+        smilyClicked: false
+      })
+    }
+  }
+  render() {
+    const time = this.props.review.posted;
+    const id = this.props.review._id;
+    return (
+      <StyledReview color={this.state.review.background} width={this.props.width} >
+        <div className="topPart" onClick={() => this.props.selected(id)} >
+          <div><img src={this.state.review.thumbnail} alt="" /></div>
+          <div>
+            <div className="username">{this.state.review.username}</div>
+            <div className="userInfo">{this.state.review.resident === true ? 'Resident' : 'Visitor'}{' '}
                 • {moment(time).startOf('month').fromNow()}</div>
+          </div>
         </div>
-      </div>
-      <div className="middlePart ">"{props.review.message}"</div>
-      <div className="bottomPart">
-        <div className="smilyLogo"><Smily /><span className="liked">{props.review.liked}</span></div>
-        <div className="flag">Flag</div>
-      </div>
-    </StyledReview>
-  )
-};
+        <div className="middlePart " onClick={() => this.props.selected(id)} >"{this.state.review.message}"</div>
+        <div className="bottomPart">
+          <div className="smilyLogo" onClick={this.smilyToggleHandler}><Smily /><span className="liked">{this.state.liked}</span></div>
+          <div className="flag" onClick={this.props.flag}>Flag</div>
+        </div>
+      </StyledReview>
+    )
+  };
+}
 
 export default ReviewItem;
