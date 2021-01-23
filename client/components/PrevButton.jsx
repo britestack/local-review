@@ -20,8 +20,8 @@ const StyledButton = styled.div`
   -webkit-box-pack: center;
   display: flex;
   cursor: pointer;
-  width: 35px;
-  height: 35px;
+  width: 30px;
+  height: 30px;
   border: 1px solid rgb(232, 233, 234);
   background-color: rgb(255, 255, 255);
 `;

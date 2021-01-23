@@ -3,7 +3,7 @@ import styled, { keyframes } from 'styled-components';
 import axios from 'axios';
 import ReviewItem from './ReviewItem.jsx';
 import SingleReview from './UI/Modal/SingleReviewModal.jsx';
-import AllReviewMModal from './UI/Modal/AllReviewModal.jsx';
+import AllReviewModal from './UI/Modal/AllReviewModal.jsx';
 import FlagModal from './UI/Modal/FlagModal.jsx';
 import NextButton from './NextButton.jsx';
 import PrevButton from './PrevButton.jsx';
@@ -161,7 +161,7 @@ class Reviews extends Component {
       <>
         {/* Modals live here  */}
         {this.state.showingSingle ? <SingleReview showflag={this.showFlag} close={this.allModalCloser} review={this.state.selectedReview} /> : null}
-        {this.state.showingAll ? <AllReviewMModal close={this.allModalCloser} reviews={all} /> : null}
+        {this.state.showingAll ? <AllReviewModal showflag={this.showFlag} close={this.allModalCloser} reviews={all} /> : null}
         {this.state.showingFlag ? <FlagModal close={this.allModalCloser} /> : null}
         <StyledReviews slide={this.state.slide}>
           <div className="container">
