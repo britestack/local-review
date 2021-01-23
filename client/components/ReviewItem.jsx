@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Smily from './Logos/Smily.jsx'
 
 const StyledReview = styled.div`
-  width: 10.2rem;
+  width: ${props => props.width ? props.width : '10.2rem'};
   height: 19rem;
   color: white;
   padding: 28px 32px 10px 32px;
@@ -49,6 +49,9 @@ const StyledReview = styled.div`
     justify-content: space-between;
     align-items: flex-end;
     flex: 1;
+    .smilyLogo:hover {
+      cursor: pointer;
+    }
     .liked {
       font-size: 18px;
       position: absolute;
@@ -57,6 +60,7 @@ const StyledReview = styled.div`
     }
     .flag {
       position: absolute;
+      cursor: pointer;
       top: 2.3rem;
       right: 0;
       font-size: 16px;
@@ -94,7 +98,7 @@ class ReviewItem extends Component {
     const time = this.props.review.posted;
     const id = this.props.review._id;
     return (
-      <StyledReview color={this.state.review.background}>
+      <StyledReview color={this.state.review.background} width={this.props.width} >
         <div className="topPart" onClick={() => this.props.selected(id)} >
           <div><img src={this.state.review.thumbnail} alt="" /></div>
           <div>
@@ -106,12 +110,11 @@ class ReviewItem extends Component {
         <div className="middlePart " onClick={() => this.props.selected(id)} >"{this.state.review.message}"</div>
         <div className="bottomPart">
           <div className="smilyLogo" onClick={this.smilyToggleHandler}><Smily /><span className="liked">{this.state.liked}</span></div>
-          <div className="flag">Flag</div>
+          <div className="flag" onClick={this.props.flag}>Flag</div>
         </div>
       </StyledReview>
     )
   };
 }
-
 
 export default ReviewItem;

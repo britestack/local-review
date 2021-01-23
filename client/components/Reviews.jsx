@@ -3,7 +3,8 @@ import styled, { keyframes } from 'styled-components';
 import axios from 'axios';
 import ReviewItem from './ReviewItem.jsx';
 import SingleReview from './UI/Modal/SingleReviewModal.jsx';
-import AllReviewModal from './AllReview.jsx';
+import AllReviewMModal from './UI/Modal/AllReviewModal.jsx';
+import FlagModal from './UI/Modal/FlagModal.jsx';
 import NextButton from './NextButton.jsx';
 import PrevButton from './PrevButton.jsx';
 
@@ -101,20 +102,25 @@ class Reviews extends Component {
       view: 'all',
       selectedReview: '',
       showingSingle: false,
+      showingAll: false,
+      showingFlag: false,
       slide: false
     };
     this.buttonClickHandler = this.buttonClickHandler.bind(this);
     this.onClickHandler = this.onClickHandler.bind(this);
-    this.singleReviewCancelHandler = this.singleReviewCancelHandler.bind(this);
+    this.allModalCloser = this.allModalCloser.bind(this);
+    this.showFlag = this.showFlag.bind(this);
   }
   buttonClickHandler(type) {
     this.setState({
       view: type
     })
   }
-  singleReviewCancelHandler() {
+  allModalCloser() {
     this.setState({
-      showingSingle: false
+      showingSingle: false,
+      showingFlag: false,
+      showingAll: false
     })
   }
   onClickHandler(id) {
@@ -129,6 +135,13 @@ class Reviews extends Component {
       .catch(err => {
         console.log('err: ', err);
       })
+  }
+  showFlag() {
+    this.setState({
+      showingSingle: false,
+      showingAll: false,
+      showingFlag: true
+    })
   }
   render() {
     const all = this.props.reviews;
@@ -147,7 +160,9 @@ class Reviews extends Component {
     return (
       <>
         {/* Modals live here  */}
-        {this.state.showingSingle ? <SingleReview close={this.singleReviewCancelHandler} review={this.state.selectedReview} /> : null}
+        {this.state.showingSingle ? <SingleReview showflag={this.showFlag} close={this.allModalCloser} review={this.state.selectedReview} /> : null}
+        {this.state.showingAll ? <AllReviewMModal close={this.allModalCloser} reviews={all} /> : null}
+        {this.state.showingFlag ? <FlagModal close={this.allModalCloser} /> : null}
         <StyledReviews slide={this.state.slide}>
           <div className="container">
             <div className="nav">
@@ -163,7 +178,7 @@ class Reviews extends Component {
                 {this.state.view === 'all' ? all.map((review, i) => {
                   return (
                     <div key={i} className="items">
-                      <ReviewItem review={review} selected={this.onClickHandler} />
+                      <ReviewItem flag={this.showFlag} review={review} selected={this.onClickHandler} />
                     </div>
                   )
                 }) : null}
@@ -171,7 +186,7 @@ class Reviews extends Component {
                 {this.state.view === 'community' ? community.map((review, i) => {
                   return (
                     <div key={i} className="items">
-                      <ReviewItem review={review} selected={this.onClickHandler} />
+                      <ReviewItem flag={this.showFlag} review={review} selected={this.onClickHandler} />
                     </div>
                   )
                 }) : null}
@@ -179,7 +194,7 @@ class Reviews extends Component {
                 {this.state.view === 'dog owners' ? dogOwners.map((review, i) => {
                   return (
                     <div key={i} className="items">
-                      <ReviewItem review={review} selected={this.onClickHandler} />
+                      <ReviewItem flag={this.showFlag} review={review} selected={this.onClickHandler} />
                     </div>
                   )
                 }) : null}
@@ -187,7 +202,7 @@ class Reviews extends Component {
                 {this.state.view === 'parents' ? parents.map((review, i) => {
                   return (
                     <div key={i} className="items">
-                      <ReviewItem review={review} selected={this.onClickHandler} />
+                      <ReviewItem flag={this.showFlag} review={review} selected={this.onClickHandler} />
                     </div>
                   )
                 }) : null}
@@ -195,7 +210,7 @@ class Reviews extends Component {
                 {this.state.view === 'commute' ? commute.map((review, i) => {
                   return (
                     <div key={i} className="items">
-                      <ReviewItem review={review} selected={this.onClickHandler} />
+                      <ReviewItem flag={this.showFlag} review={review} selected={this.onClickHandler} />
                     </div>
                   )
                 }) : null}
@@ -204,9 +219,15 @@ class Reviews extends Component {
           </div>
           {/* Buttons live here  */}
           <NextButton slide={this.state.slide} all={all} click={() => {
-            this.setState({
-              slide: true
-            })
+            if (this.state.slide) {
+              this.setState({
+                showingAll: true
+              })
+            } else {
+              this.setState({
+                slide: true
+              })
+            }
           }} />
           {this.state.slide ? <PrevButton click={() => {
             this.setState({
