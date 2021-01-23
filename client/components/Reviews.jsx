@@ -149,7 +149,7 @@ class Reviews extends Component {
       review.type === 'community'
     ));
     const dogOwners = this.props.reviews.filter(review => (
-      review.type === 'dog owners'
+      review.type === 'dogOwners'
     ));
     const parents = this.props.reviews.filter(review => (
       review.type === 'parents'
@@ -168,7 +168,7 @@ class Reviews extends Component {
             <div className="nav">
               <div><button onClick={() => this.buttonClickHandler('all')}>All</button></div>
               <div><button onClick={() => this.buttonClickHandler('community')}>Community</button></div>
-              <div><button onClick={() => this.buttonClickHandler('dog owners')}>Dog Owners</button></div>
+              <div><button onClick={() => this.buttonClickHandler('dogOwners')}>Dog Owners</button></div>
               <div><button onClick={() => this.buttonClickHandler('parents')}>Parents</button></div>
               <div><button onClick={() => this.buttonClickHandler('commute')}>Commute</button></div>
             </div>
@@ -191,7 +191,7 @@ class Reviews extends Component {
                   )
                 }) : null}
                 {/* show dog owners reviews  */}
-                {this.state.view === 'dog owners' ? dogOwners.map((review, i) => {
+                {this.state.view === 'dogOwners' ? dogOwners.map((review, i) => {
                   return (
                     <div key={i} className="items">
                       <ReviewItem flag={this.showFlag} review={review} selected={this.onClickHandler} />
