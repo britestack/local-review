@@ -10,10 +10,25 @@ const StyledReviews = styled.div`
     width: 1184px;
     height: 624px;
     overflow: scroll;
+    @media(max-width: 1000px) {
+      width: 700px;
+    }
+    @media(max-width: 800px) {
+      width: 550px;
+    }
     background-color: rgb(255, 255, 255);
     .responsiveWrapper {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr 1fr;
+      @media(max-width: 1000px) {
+        grid-template-columns: 1fr 1fr;
+      }
+      @media(max-width: 800px) {
+        grid-template-columns: 1fr;
+        .items {
+         margin-bottom: 5px;
+        }
+      }
     }
     .items {
       margin: .5rem;
@@ -96,9 +111,10 @@ const StyledModal = styled.div`
   top: 8%;
   left: 11%;
   box-sizing: border-box;
-   /* @media (min-width: 600px) {
-   left: calc(25%% - 250px);
-  } */
+   @media (max-width: 800px) {
+    top: 3%;
+    left: 3%;
+  }
 `;
 
 const Modal = (props) => (
