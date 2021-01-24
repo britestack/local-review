@@ -8,6 +8,7 @@
     "node": ">=6.13.0"
   },
   "scripts": {
+    "start": "node server",
     "test": "jest --coverage",
     "server": "nodemon server",
     "watch": "webpack -w",
@@ -23,7 +24,8 @@
     "mongoose": "^5.11.11",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "styled-components": "^5.2.1"
+    "styled-components": "^5.2.1",
+    "supertest": "^6.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",

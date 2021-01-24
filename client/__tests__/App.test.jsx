@@ -3,10 +3,17 @@ import App from '../components/App.jsx';
 import { shallow } from 'enzyme';
 
 describe('<App/>', () => {
+  let wrapper;
+  beforeEach(() => {
+    wrapper = shallow(<App />);
+  });
   it('App component exists', () => {
-    const wrapper = shallow(<App />)
-    // const FeatureItem = wrapper.find('FeatureItem')
-    // console.log(wrapper.debug());
-    // expect(wrapper.children().text()).toBe('Features component!')
+    expect(wrapper.find('h3').text()).toEqual('What Locals Say about Marina');
+  });
+  it('Features component exists', () => {
+    expect(wrapper.find('Features')).toExist();
+  });
+  it('Reviews component exists', () => {
+    expect(wrapper.find('Reviews')).toExist();
   });
 });

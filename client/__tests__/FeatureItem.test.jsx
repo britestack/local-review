@@ -3,10 +3,11 @@ import FeatureItem from '../components/FeatureItem.jsx';
 import { shallow } from 'enzyme';
 
 describe('<FeatureItem/>', () => {
-  it('Feature item exists', () => {
-    const wrapper = shallow(<FeatureItem />)
-    // const FeatureItem = wrapper.find('FeatureItem')
-    // console.log(wrapper.debug());
-    // expect(wrapper.children().text()).toBe('Features component!')
+  let wrapper;
+  beforeEach(() => {
+    wrapper = shallow(<FeatureItem />);
+  });
+  it('Feature Item component exists', () => {
+    expect(wrapper.find('Fragment')).toExist();
   });
 });

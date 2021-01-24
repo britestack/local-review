@@ -3,13 +3,19 @@ import Features from '../components/Features.jsx';
 import { shallow } from 'enzyme';
 
 describe('<Features/>', () => {
-  // beforeEach(() => {
-  //   const wrapper = mount(<Features />)
-  // })
-  it('Feature item exists', () => {
-    const wrapper = shallow(<Features />)
-    // const FeatureItem = wrapper.find('FeatureItem')
-    console.log(wrapper.debug());
-    // expect(wrapper.children().text()).toBe('Features component!')
+  let wrapper;
+  beforeEach(() => {
+    wrapper = shallow(<Features />);
+  });
+  it('Feature Item component exists', () => {
+    expect(wrapper.find('FeatureItem')).toExist();
+  });
+  it('Toggle button exists', () => {
+    expect(wrapper.find('Features__StyledButton')).toExist();
+  });
+  it('Features__StyledFeatures component exists', () => {
+    expect(wrapper.find('Features__StyledFeatures')).toExist();
   });
 });
+
+

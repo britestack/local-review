@@ -48,15 +48,6 @@ class Features extends Component {
       clicked: !this.state.clicked
     })
   }
-  // componentDidMount() {
-  //   const top = this.props.features;
-  //   if (top) {
-  //     this.setState({
-  //       topList: top.slice(0, 6),
-  //       bottomList: top.slice(6)
-  //     })
-  //   }
-  // }
   render() {
     let topList = [];
     let bottomList = [];
