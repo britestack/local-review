@@ -20,15 +20,15 @@ const StyledButton = styled.div`
   -webkit-box-align: center;
   -webkit-box-pack: center;
   cursor: pointer;
-  width: 35px;
-  height: 35px;
+  width: 30px;
+  height: 30px;
   border: 1px solid rgb(232, 233, 234);
   background-color: rgb(255, 255, 255);
   .dynamicDisplay {
     font-size: 10px;
     position: absolute;
-    top: .5rem;
-    right: .6rem;
+    top: .3rem;
+    right: .4rem;
     font-size: 16px;
     font-weight: bold;
   }

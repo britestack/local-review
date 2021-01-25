@@ -3,7 +3,7 @@ import styled, { keyframes } from 'styled-components';
 import axios from 'axios';
 import ReviewItem from './ReviewItem.jsx';
 import SingleReview from './UI/Modal/SingleReviewModal.jsx';
-import AllReviewMModal from './UI/Modal/AllReviewModal.jsx';
+import AllReviewModal from './UI/Modal/AllReviewModal.jsx';
 import FlagModal from './UI/Modal/FlagModal.jsx';
 import NextButton from './NextButton.jsx';
 import PrevButton from './PrevButton.jsx';
@@ -149,7 +149,7 @@ class Reviews extends Component {
       review.type === 'community'
     ));
     const dogOwners = this.props.reviews.filter(review => (
-      review.type === 'dog owners'
+      review.type === 'dogOwners'
     ));
     const parents = this.props.reviews.filter(review => (
       review.type === 'parents'
@@ -161,14 +161,14 @@ class Reviews extends Component {
       <>
         {/* Modals live here  */}
         {this.state.showingSingle ? <SingleReview showflag={this.showFlag} close={this.allModalCloser} review={this.state.selectedReview} /> : null}
-        {this.state.showingAll ? <AllReviewMModal close={this.allModalCloser} reviews={all} /> : null}
+        {this.state.showingAll ? <AllReviewModal showflag={this.showFlag} close={this.allModalCloser} reviews={all} /> : null}
         {this.state.showingFlag ? <FlagModal close={this.allModalCloser} /> : null}
         <StyledReviews slide={this.state.slide}>
           <div className="container">
             <div className="nav">
               <div><button onClick={() => this.buttonClickHandler('all')}>All</button></div>
               <div><button onClick={() => this.buttonClickHandler('community')}>Community</button></div>
-              <div><button onClick={() => this.buttonClickHandler('dog owners')}>Dog Owners</button></div>
+              <div><button onClick={() => this.buttonClickHandler('dogOwners')}>Dog Owners</button></div>
               <div><button onClick={() => this.buttonClickHandler('parents')}>Parents</button></div>
               <div><button onClick={() => this.buttonClickHandler('commute')}>Commute</button></div>
             </div>
@@ -191,7 +191,7 @@ class Reviews extends Component {
                   )
                 }) : null}
                 {/* show dog owners reviews  */}
-                {this.state.view === 'dog owners' ? dogOwners.map((review, i) => {
+                {this.state.view === 'dogOwners' ? dogOwners.map((review, i) => {
                   return (
                     <div key={i} className="items">
                       <ReviewItem flag={this.showFlag} review={review} selected={this.onClickHandler} />

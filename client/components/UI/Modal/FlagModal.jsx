@@ -1,95 +1,128 @@
 import React from 'react';
-import moment from 'moment';
 import styled from 'styled-components';
-import BackDrop from '../BackDrop.jsx'
-import Smily from '../../Logos/Smily.jsx'
+// import BackDrop from '../BackDrop.jsx'
 import CloseButton from '../../Logos/CloseButton.jsx'
 
 const StyledReview = styled.div`
-    border-radius: 8px;
-    padding: 32px;
-    width: 100%;
-    height: 667px;
-    color: rgb(255, 255, 255);
-    background-color: ${props => props.color};
-    max-width: 375px;
-    max-height: 667px;
-    display: flex;
+  display: flex;
     flex-direction: column;
     overflow: auto;
-  .topPart {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    .userInfo {
-      display: flex;
-    }
-    .userInfo-mid {
-      padding-left: 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      .username {
-      font-size: 24px;
-      font-weight: 800;
-    }
-    }
-    img {
-      width: 45px;
-      height: 45px;
-      border-radius: 1.5rem;
-    }
-  }
-  .middlePart {
-    overflow: auto;
-    flex: 1 1 auto;
-    margin: 24px 0px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 8px;
     padding: 32px;
-    font-size: 28px;
-  }
-  .bottomPart {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    .liked {
-      font-size: 22px;
-      position: absolute;
-      top: .2rem;
-      left: 3rem;
+    width: 600px;
+    height: 424px;
+    .heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
     }
-    .flag {
-      font-size: 20px;
+    a {
+      color: rgb(0, 120, 130);
+      text-decoration: none;
     }
-  }
+    ul {
+      margin: 0px;
+      padding: 0px;
+      list-style: none;
+      display: block;
+      li {
+        margin-bottom: .8rem;
+      }
+    }
+    button {
+      outline: 0;
+      margin: 10px .5rem;
+      border-radius: 8px;
+      border-width: 1px;
+      border-style: solid;
+      cursor: pointer;
+      display: inline-block;
+      text-align: center;
+      font-weight: bold;
+      font-size: 16px;
+      line-height: 1.5;
+      padding: 8px 16px;
+      width: 18vh;
+    }
+    .report {
+        border-color: rgb(0, 120, 130);
+        background-color: rgb(0, 120, 130);
+        color: white;
+        &:hover {
+          background-color: white;
+          color: rgb(0, 120, 130);
+        }
+      }
+    .cancel {
+        background-color: white;
+        &:hover {
+          background-color: #DDDADA;
+        }
+      }
 `;
 
+const StyledBackDrop = styled.div`
+  display: inline;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, .7);
+  backdrop-filter: blur(1rem);
+`;
+
+const Backdrop = (props) => (
+  <StyledBackDrop onClick={props.clicked} />
+);
+
+const StyledModal = styled.div`
+  position: fixed;
+  z-index: 200;
+  top: 12%;
+  left: 30%;
+  box-sizing: border-box;
+   /* @media (min-width: 600px) {
+   left: calc(25%% - 250px);
+  } */
+`;
+
+const Modal = (props) => (
+  <>
+    <Backdrop clicked={props.modalClosed} />
+    <StyledModal>
+      {props.children}
+    </StyledModal>
+  </>
+);
+
 const FlagModal = (props) => {
-  const reviews = props.reviews;
   return (
-    <>
-      <BackDrop modalClosed={props.close}>
-        {/* <StyledReview color={props.review.background}>
-          <div className="topPart">
-            <div className="userInfo">
-              <div className="userInfo-top"><img src={props.review.thumbnail} alt="" /></div>
-              <div className="userInfo-mid">
-                <div className="username">{props.review.username}</div>
-                <div>{props.review.resident === true ? 'Resident' : 'Visitor'}{' '}
-              • {moment(time).startOf('month').fromNow()}</div>
-              </div>
-            </div>
-            <div className="closeButton" onClick={props.close}><CloseButton /></div>
+    <Modal modalClosed={props.close}>
+      <StyledReview>
+        <div className="heading">
+          <h1>Report this content</h1><div className="closeButton" onClick={() => props.close()}><CloseButton /></div>
+        </div>
+        <div>
+          <div>Please refer to Trulia's <a href="#">Community Guidelines</a> and let us know why you think the content you're reporting may violate these guidelines</div>
+          <h3>What's wrong with this content?</h3>
+          <ul>
+            <li><label><input type="radio" name="reasons" value="inappropriate offensive or unneighborly" /><span>Inapproriate, offensive or unneighborly</span></label></li>
+            <li><label><input type="radio" name="reasons" value="not relevant" /><span>Not relevant, talks about the wrong neighborhood or a specific property</span></label></li>
+            <li><label><input type="radio" name="reasons" value="commercial promotional or spam" /><span>Commercial, promotional or spam</span></label>
+            </li>
+            <li><label><input type="radio" name="reasons" value="duplicate content" /><span>Duplicate content</span></label></li>
+          </ul>
+          <div className="buttons" onClick={props.close}>
+            <button className="report">Report</button>
+            <button className="cancel">Cancel</button>
           </div>
-          <div className="middlePart ">"{props.review.message}"</div>
-          <div className="bottomPart">
-            <div className="smilyLogo"><Smily /><span className="liked">{props.review.liked}</span></div>
-            <div className="flag">Flag</div>
-          </div>
-        </StyledReview> */}
-        <h1 style={{ color: 'white' }}>Flag Modal coming soon!</h1>
-      </BackDrop>
-    </>
+        </div>
+      </StyledReview>
+    </Modal>
   )
 };
 

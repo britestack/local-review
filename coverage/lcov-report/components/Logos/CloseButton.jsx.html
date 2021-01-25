@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for components/Logos/Moon.jsx</title>
+    <title>Code coverage report for components/Logos/CloseButton.jsx</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,7 +19,7 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">components/Logos</a> Moon.jsx</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">components/Logos</a> CloseButton.jsx</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
@@ -83,26 +83,32 @@
 <a name='L24'></a><a href='#L24'>24</a>
 <a name='L25'></a><a href='#L25'>25</a>
 <a name='L26'></a><a href='#L26'>26</a>
-<a name='L27'></a><a href='#L27'>27</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L27'></a><a href='#L27'>27</a>
+<a name='L28'></a><a href='#L28'>28</a>
+<a name='L29'></a><a href='#L29'>29</a>
+<a name='L30'></a><a href='#L30'>30</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -113,7 +119,11 @@
 import styled from 'styled-components';
 &nbsp;
 const StyledWrapper = styled.div`
-  /* display: inline-block; */
+  &amp;:hover {
+    cursor: pointer;
+  }
+  background: white;
+  border-radius: 2rem;
   font-size: 0px;
 `;
 &nbsp;
@@ -123,19 +133,18 @@ const StyledSvg = styled.svg`
 `;
 &nbsp;
 const StyledSvgPath = styled.path`
-  fill: rgb(0, 163, 177);
+  fill: #869099;
 `;
 &nbsp;
-const Moon = <span class="fstat-no" title="function not covered" >()</span> =&gt; (
+const CloseButton = <span class="fstat-no" title="function not covered" >()</span> =&gt; (
 <span class="cstat-no" title="statement not covered" >  &lt;StyledWrapper&gt;</span>
     &lt;StyledSvg&gt;
-      &lt;StyledSvgPath d="M14.915 5.32A8.439 8.439 0 0 0 26.6 17.005c-.524 5.416-5.089 9.65-10.643 9.65-5.905 0-10.692-4.787-10.692-10.692 0-5.554 4.234-10.12 9.65-10.643z" fill-rule="evenodd" /&gt;
+      &lt;StyledSvgPath d="M27.816 25.935l-1.881 1.88-21.83-21.83 1.88-1.88 21.83 21.83zm-1.881-21.83l1.88 1.88-21.83 21.83-1.88-1.88 21.83-21.83z" fill-rule="evenodd" /&gt;
     &lt;/StyledSvg&gt;
   &lt;/StyledWrapper&gt;
 )
 &nbsp;
-export default Moon;
-&nbsp;</pre></td></tr></table></pre>
+export default CloseButton;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->

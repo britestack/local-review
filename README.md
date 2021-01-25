@@ -1,15 +1,14 @@
-# Project Name
-Local Review
+![Local-Review](App.png)
+# Local Review
+---
 
-> Project description
-> Displays the reviews of local neighbors
+>This is local-review component of Trulia.com real estate application. It displays the reviews of local neighbors for the property. Also you can see the current ratings of features and expand the view to see more.
 
 ## Related Projects
 
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
+  - https://github.com/Archon-Design/AffordabilityCalculator
+  - https://github.com/Archon-Design/similar-homes-service
+  - https://github.com/Archon-Design/PhotoGallery
 
 ## Table of Contents
 
@@ -19,7 +18,7 @@ Local Review
 
 ## Usage
 
-> Some usage instructions
+> to get started, run `npm install` then `npm start`
 
 ## Requirements
 
