@@ -1,10 +1,10 @@
 const express = require('express');
-require('dotenv').config({ path: 'variables.env' });
+require('dotenv').config();
 const ReviewRoute = require('./Routes/review.controller');
 const FeatureRoute = require('./Routes/feature.controller');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3004;
 
 app.use(express.static('public'));
 
