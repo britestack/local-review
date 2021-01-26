@@ -20,12 +20,10 @@ const ReviewSchema = new mongoose.Schema({
   background: String
 });
 
-const Feature = mongoose.model('feature', FeatureSchema);
-const Review = mongoose.model('review', ReviewSchema);
+const Feature = mongoose.model('features', FeatureSchema);
+const Review = mongoose.model('reviews', ReviewSchema);
 
-mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true }, () => {
-  console.log('Connected to MongoDB');
-});
+mongoose.connect('mongodb://localhost/review', { useNewUrlParser: true, useUnifiedTopology: true });
 
 const db = mongoose.connection;
 
