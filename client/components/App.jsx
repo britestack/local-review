@@ -1,22 +1,16 @@
 import React, { Component } from 'react';
-import { createGlobalStyle } from "styled-components";
 import styled from 'styled-components';
 import Features from './Features.jsx';
 import Reviews from './Reviews.jsx';
 import axios from 'axios';
 
-const GlobalStyles = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css2?family=Cabin&display=swap%27');
-`;
-
 const StyledApp = styled.div`
-  font-family: 'Cabin', sans-serif;
   padding: .8rem;
   box-sizing: border-box;
   background-color: #f5f6f7;
   border-radius: 8px;
   width: 992px;
-  /* height: 789px; */
+  margin: auto;
   height: 100%;
   a {
     color: rgb(0, 120, 130);
@@ -49,8 +43,6 @@ const StyledApp = styled.div`
     margin-bottom: 12px;
   }
 `;
-
-
 
 const StyledWrapper = styled.div`
 display: flex;
@@ -93,20 +85,13 @@ class App extends Component {
   }
   render() {
     return (
-      <>
-        <GlobalStyles />
-        <StyledWrapper>
-          <div className="one"></div>
-          < StyledApp >
-            <h3>What Locals Say about Marina</h3>
-            <div className="voteInfo">At least 130 Trulia users voted on each feature</div>
-            <Features features={this.state.features} />
-            <div className="helpful_info"><span className="link"><a href="#" >Learn more</a> about our methodology</span></div>
-            <Reviews reviews={this.state.reviews} />
-          </StyledApp >
-          <div className="one"></div>
-        </StyledWrapper>
-      </>
+      < StyledApp >
+        <h3>What Locals Say about Marina</h3>
+        <div className="voteInfo">At least 130 Trulia users voted on each feature</div>
+        <Features features={this.state.features} />
+        <div className="helpful_info"><span className="link"><a href="#" >Learn more</a> about our methodology</span></div>
+        <Reviews reviews={this.state.reviews} />
+      </StyledApp >
     )
   }
 };

@@ -4,7 +4,7 @@ const ReviewRoute = require('./Routes/review.controller');
 const FeatureRoute = require('./Routes/feature.controller');
 
 const app = express();
-const PORT = process.env.PORT || 3004;
+const PORT = 3004;
 
 app.use(cors());
 app.use(express.static('public'));
