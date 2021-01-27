@@ -88,6 +88,27 @@ const FeatureItem = (props) => {
       if (index === 9) return <Events />;
     }
   };
+  const description = (itemsLength, index) => {
+    if (itemsLength === 6) {
+      if (index === 0) return 'It\'s dog friendly';
+      if (index === 1) return 'There are sidewalks';
+      if (index === 2) return 'It\'s walkable to restaurants';
+      if (index === 3) return 'It\'s walkable to grocery stores';
+      if (index === 4) return 'People would walk alone at night';
+      if (index === 5) return 'Streets are well-lit';
+    } else {
+      if (index === 0) return 'Kids play outside';
+      if (index === 1) return 'There\'s holiday spirit';
+      if (index === 2) return 'Neighbors are friendly';
+      if (index === 3) return 'It\'s quiet';
+      if (index === 4) return 'They plan to stay for at least 5 years';
+      if (index === 5) return 'Parking is easy';
+      if (index === 6) return 'Car is needed';
+      if (index === 7) return 'There\'s wildlife';
+      if (index === 8) return 'Yards are well-kept';
+      if (index === 9) return 'There are community events';
+    }
+  };
   return (
     <>
       {
@@ -98,7 +119,7 @@ const FeatureItem = (props) => {
                 <div className="percentWrapper"><Like /><span className="percentage">{calculatePercent(item.liked)}%</span></div>
                 <div className="descriptionWrapper">
                   <span className="logo">{logos(props.items.length, i)}</span>
-                  <div className="description">{item.name}</div>
+                  <div className="description">{description(props.items.length, i)}</div>
                 </div>
               </StyledItem>
             )
