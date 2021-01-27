@@ -29,7 +29,7 @@ const StyledButton = styled.div`
     font-size: 10px;
     position: absolute;
     top: 4px;
-    right: 3px;
+    right: 6px;
     font-size: 16px;
     font-weight: bold;
   }

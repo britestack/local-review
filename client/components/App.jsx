@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
-import { createGlobalStyle } from "styled-components";
 import styled from 'styled-components';
 import Features from './Features.jsx';
 import Reviews from './Reviews.jsx';
 import axios from 'axios';
 
-const GlobalStyles = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css2?family=Cabin&display=swap%27');
-`;
-
 const StyledApp = styled.div`
-  font-family: 'Cabin', sans-serif;
+  /* * {
+    font-family: 'Cabin', sans-serif;
+  } */
   padding: .8rem;
   box-sizing: border-box;
   background-color: #f5f6f7;
@@ -49,8 +46,6 @@ const StyledApp = styled.div`
     margin-bottom: 12px;
   }
 `;
-
-
 
 const StyledWrapper = styled.div`
 display: flex;
@@ -94,7 +89,6 @@ class App extends Component {
   render() {
     return (
       <>
-        <GlobalStyles />
         <StyledWrapper>
           <div className="one"></div>
           < StyledApp >

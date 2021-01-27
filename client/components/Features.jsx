@@ -16,7 +16,7 @@ const StyledButton = styled.div`
       background-color: rgb(150, 150, 150);
       border: 1px solid rgb(150, 150, 150);
     };
-    margin: 0px;
+    margin: 6px 0px 6px 0px;
     border-radius: 8px;
     border-width: 1px;
     border-style: solid;
