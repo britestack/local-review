@@ -1,34 +1,40 @@
 import React from 'react';
 import styled from 'styled-components';
-// import BackDrop from '../BackDrop.jsx'
 import CloseButton from '../../Logos/CloseButton.jsx'
 
 const StyledReview = styled.div`
-  display: flex;
+    font-size: 16.5px;
+    font-weight: 400;
+    display: flex;
     flex-direction: column;
     overflow: auto;
     background-color: rgb(255, 255, 255);
     border-radius: 8px;
     padding: 32px;
-    width: 600px;
-    height: 424px;
+    width: 610px;
+    height: 100%;
     .heading {
       display: flex;
       justify-content: space-between;
       align-items: center;
       position: relative;
+      margin-bottom: 10px;
     }
     a {
       color: rgb(0, 120, 130);
       text-decoration: none;
     }
     ul {
-      margin: 0px;
-      padding: 0px;
       list-style: none;
-      display: block;
       li {
+        display: flex;
         margin-bottom: .8rem;
+        input {
+          width: 20px;
+        }
+        span {
+          margin-left: 5px;
+        }
       }
     }
     button {
@@ -68,7 +74,7 @@ const StyledBackDrop = styled.div`
   width: 100%;
   height: 100%;
   position: fixed;
-  z-index: 100;
+  z-index: 1;
   left: 0;
   top: 0;
   background-color: rgba(0, 0, 0, .7);
@@ -81,7 +87,7 @@ const Backdrop = (props) => (
 
 const StyledModal = styled.div`
   position: fixed;
-  z-index: 200;
+  z-index: 2;
   top: 12%;
   left: 30%;
   box-sizing: border-box;

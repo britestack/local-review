@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
+import { createGlobalStyle } from "styled-components";
 import styled from 'styled-components';
 import Features from './Features.jsx';
 import Reviews from './Reviews.jsx';
 import axios from 'axios';
+
+const GlobalStyles = createGlobalStyle`
+  @import url('https://fonts.googleapis.com/css2?family=Cabin&display=swap%27');
+`;
 
 const StyledApp = styled.div`
   font-family: 'Cabin', sans-serif;
@@ -11,7 +16,8 @@ const StyledApp = styled.div`
   background-color: #f5f6f7;
   border-radius: 8px;
   width: 992px;
-  height: 789px;
+  /* height: 789px; */
+  height: 100%;
   a {
     color: rgb(0, 120, 130);
     text-decoration: none;
@@ -26,7 +32,6 @@ const StyledApp = styled.div`
     letter-spacing: -0.1px;
   }
   .voteInfo {
-    /* font-family: TruliaSans, system, -apple-system, Roboto, "Segoe UI Bold", Arial, sans-serif; */
     color: rgb(59, 65, 68);
     padding: 0px 0px 24px;
   }
@@ -45,11 +50,13 @@ const StyledApp = styled.div`
   }
 `;
 
+
+
 const StyledWrapper = styled.div`
-  display: flex;
+display: flex;
   .one {
-    flex: 1;
-  }
+  flex: 1;
+}
 `;
 
 class App extends Component {
@@ -86,17 +93,20 @@ class App extends Component {
   }
   render() {
     return (
-      <StyledWrapper>
-        <div className="one"></div>
-        <StyledApp>
-          <h3>What Locals Say about Marina</h3>
-          <div className="voteInfo">At least 130 Trulia users voted on each feature</div>
-          <Features features={this.state.features} />
-          <div className="helpful_info"><span className="link"><a href="#" >Learn more</a> about our methodology</span></div>
-          <Reviews reviews={this.state.reviews} />
-        </StyledApp>
-        <div className="one"></div>
-      </StyledWrapper>
+      <>
+        <GlobalStyles />
+        <StyledWrapper>
+          <div className="one"></div>
+          < StyledApp >
+            <h3>What Locals Say about Marina</h3>
+            <div className="voteInfo">At least 130 Trulia users voted on each feature</div>
+            <Features features={this.state.features} />
+            <div className="helpful_info"><span className="link"><a href="#" >Learn more</a> about our methodology</span></div>
+            <Reviews reviews={this.state.reviews} />
+          </StyledApp >
+          <div className="one"></div>
+        </StyledWrapper>
+      </>
     )
   }
 };

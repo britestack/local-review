@@ -54,8 +54,6 @@ class Features extends Component {
     if (this.props.features) {
       topList = this.props.features.slice(0, 6);
       bottomList = this.props.features.slice(6);
-      console.log('topList: ', topList);
-      console.log('bottomList: ', bottomList);
     }
     return (
       <>

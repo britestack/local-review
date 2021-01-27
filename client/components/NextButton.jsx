@@ -11,7 +11,8 @@ const StyledButton = styled.div`
     border: 1px solid rgb(150, 150, 150);
   };
   position: absolute;
-  right: -.8rem;
+  /* right: -.8rem; */
+  right: -.5rem;
   top: calc(50% - 24px);
   transition: box-shadow 0.1s ease 0s, color 0.1s ease 0s, border-color 0.2sease 0s, background-color 0.2s ease 0s;
   border-radius: 24px;
@@ -20,15 +21,15 @@ const StyledButton = styled.div`
   -webkit-box-align: center;
   -webkit-box-pack: center;
   cursor: pointer;
-  width: 30px;
-  height: 30px;
+  width: 34px;
+  height: 34px;
   border: 1px solid rgb(232, 233, 234);
   background-color: rgb(255, 255, 255);
   .dynamicDisplay {
     font-size: 10px;
     position: absolute;
-    top: .3rem;
-    right: .4rem;
+    top: 4px;
+    right: 3px;
     font-size: 16px;
     font-weight: bold;
   }

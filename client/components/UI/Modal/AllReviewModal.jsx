@@ -31,7 +31,7 @@ const StyledReviews = styled.div`
       }
     }
     .items {
-      margin: .5rem;
+      margin: 7px;
     }
     .nav {
       position: relative;
@@ -94,7 +94,7 @@ const StyledBackDrop = styled.div`
   width: 100%;
   height: 100%;
   position: fixed;
-  z-index: 100;
+  z-index: 1;
   left: 0;
   top: 0;
   background-color: rgba(0, 0, 0, .7);
@@ -107,7 +107,7 @@ const Backdrop = (props) => (
 
 const StyledModal = styled.div`
   position: fixed;
-  z-index: 200;
+  z-index: 2;
   top: 8%;
   left: 11%;
   box-sizing: border-box;
@@ -172,7 +172,7 @@ class AllReviewModal extends React.Component {
                 {this.state.view === 'all' ? reviews.map((review, i) => {
                   return (
                     <div key={i} className="items">
-                      <ReviewItem flag={this.props.showflag} width="13.3rem" review={review} />
+                      <ReviewItem flag={this.props.showflag} width="265px" review={review} />
                     </div>
                   )
                 }) : null}
@@ -180,7 +180,7 @@ class AllReviewModal extends React.Component {
                 {this.state.view === 'community' ? community.map((review, i) => {
                   return (
                     <div key={i} className="items">
-                      <ReviewItem flag={this.props.showflag} width="13.3rem" review={review} />
+                      <ReviewItem flag={this.props.showflag} width="265px" review={review} />
                     </div>
                   )
                 }) : null}
@@ -188,7 +188,7 @@ class AllReviewModal extends React.Component {
                 {this.state.view === 'dogOwners' ? dogOwners.map((review, i) => {
                   return (
                     <div key={i} className="items">
-                      <ReviewItem flag={this.props.showflag} width="13.3rem" review={review} />
+                      <ReviewItem flag={this.props.showflag} width="265px" review={review} />
                     </div>
                   )
                 }) : null}
@@ -196,7 +196,7 @@ class AllReviewModal extends React.Component {
                 {this.state.view === 'parents' ? parents.map((review, i) => {
                   return (
                     <div key={i} className="items">
-                      <ReviewItem flag={this.props.showflag} width="13.3rem" review={review} />
+                      <ReviewItem flag={this.props.showflag} width="265px" review={review} />
                     </div>
                   )
                 }) : null}
@@ -204,7 +204,7 @@ class AllReviewModal extends React.Component {
                 {this.state.view === 'commute' ? commute.map((review, i) => {
                   return (
                     <div key={i} className="items">
-                      <ReviewItem flag={this.props.showflag} width="13.3rem" review={review} />
+                      <ReviewItem flag={this.props.showflag} width="265px" review={review} />
                     </div>
                   )
                 }) : null}
