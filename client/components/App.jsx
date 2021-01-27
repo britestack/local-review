@@ -65,7 +65,7 @@ class App extends Component {
     this.getFeatures = this.getFeatures.bind(this);
   }
   getReviews() {
-    axios.get('/reviews')
+    axios.get('http://localhost:3004/reviews')
       .then(({ data: reviews }) => {
         this.setState({
           reviews
@@ -74,7 +74,7 @@ class App extends Component {
       .catch(err => console.log('error: ', err));
   }
   getFeatures() {
-    axios.get('/features')
+    axios.get('http://localhost:3004/features')
       .then(({ data: features }) => {
         this.setState({
           features
