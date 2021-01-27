@@ -4,7 +4,8 @@ import styled from 'styled-components';
 import Smily from './Logos/Smily.jsx'
 
 const StyledReview = styled.div`
-  width: ${props => props.width ? props.width : '10.2rem'};
+  /* width: ${props => props.width ? props.width : '10.2rem'}; */
+  width: ${props => props.width ? props.width : '227px'};
   @media(max-width: 800px) {
     width: 28rem;
     margin: 5px;
@@ -12,7 +13,6 @@ const StyledReview = styled.div`
   height: 19rem;
   color: white;
   padding: 28px 32px 10px 32px;
-  /* padding: 32px; */
   border-radius: 8px;
   background-color: ${props => props.color};
   display: flex;
@@ -41,7 +41,7 @@ const StyledReview = styled.div`
   .middlePart {
     background-image: linear-gradient(rgba(0, 173, 187, .6));
     overflow: hidden;
-    font-size: 24px;
+    font-size: 20px;
     padding: 5px;
     flex: 2;
   }

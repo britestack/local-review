@@ -1,13 +1,12 @@
 const faker = require('faker');
 const { Review, Feature, db } = require('./server/Models/review');
 
-const createFeature = (name) => {
+const createFeature = () => {
   // get random number between min to max
   let min = 85;
   let max = 129;
   let randomNumber = (Math.floor(Math.random() * (max - min + 1)) + min);
   const feature = {};
-  feature.name = name;
   feature.liked = randomNumber;
   return feature;
 };
@@ -86,27 +85,9 @@ const createReview = (n) => {
 
 // generates 16 features
 const getFeatures = () => {
-  const possibleFeaturesNames = {
-    0: 'It\'s dog friendly',
-    1:'There are sidewalks',
-    2: 'It\'s walkable to restaurants',
-    3: 'It\'s walkable to grocery stores',
-    4: 'People would walk alone at night',
-    5: 'Streets are well-lit',
-    6: 'Kids play outside',
-    7: 'There\'s holiday spirit',
-    8: 'It\'s quiet',
-    9: 'Neighbors are friendly',
-    10: 'They plan to stay for at least 5 years',
-    11: 'Parking is easy',
-    12: 'Car is needed',
-    13: 'There\'s wildlife',
-    14: 'Yards are well-kept',
-    15: 'There are community events'
-  };
   const sampleFeatures = [];
   for (let i = 0; i < 16; i++) {
-    const newFeature = createFeature(possibleFeaturesNames[i]);
+    const newFeature = createFeature();
     sampleFeatures.push(newFeature);
   }
   return sampleFeatures;

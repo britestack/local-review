@@ -6,7 +6,7 @@ const StyledBackDrop = styled.div`
   width: 100%;
   height: 100%;
   position: fixed;
-  z-index: 100;
+  z-index: 1;
   left: 0;
   top: 0;
   background-color: rgba(0, 0, 0,.7);
@@ -20,7 +20,7 @@ const Backdrop = (props) => (
 
 const StyledModal = styled.div`
   position: fixed;
-  z-index: 200;
+  z-index: 2;
   left: 15%;
   top: 10%;
   box-sizing: border-box;
