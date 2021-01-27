@@ -5,15 +5,12 @@ import Reviews from './Reviews.jsx';
 import axios from 'axios';
 
 const StyledApp = styled.div`
-  /* * {
-    font-family: 'Cabin', sans-serif;
-  } */
   padding: .8rem;
   box-sizing: border-box;
   background-color: #f5f6f7;
   border-radius: 8px;
   width: 992px;
-  /* height: 789px; */
+  margin: auto;
   height: 100%;
   a {
     color: rgb(0, 120, 130);
@@ -65,7 +62,7 @@ class App extends Component {
     this.getFeatures = this.getFeatures.bind(this);
   }
   getReviews() {
-    axios.get('http://localhost:3004/reviews')
+    axios.get('/reviews')
       .then(({ data: reviews }) => {
         this.setState({
           reviews
@@ -74,7 +71,7 @@ class App extends Component {
       .catch(err => console.log('error: ', err));
   }
   getFeatures() {
-    axios.get('http://localhost:3004/features')
+    axios.get('/features')
       .then(({ data: features }) => {
         this.setState({
           features
@@ -88,19 +85,13 @@ class App extends Component {
   }
   render() {
     return (
-      <>
-        <StyledWrapper>
-          <div className="one"></div>
-          < StyledApp >
-            <h3>What Locals Say about Marina</h3>
-            <div className="voteInfo">At least 130 Trulia users voted on each feature</div>
-            <Features features={this.state.features} />
-            <div className="helpful_info"><span className="link"><a href="#" >Learn more</a> about our methodology</span></div>
-            <Reviews reviews={this.state.reviews} />
-          </StyledApp >
-          <div className="one"></div>
-        </StyledWrapper>
-      </>
+      < StyledApp >
+        <h3>What Locals Say about Marina</h3>
+        <div className="voteInfo">At least 130 Trulia users voted on each feature</div>
+        <Features features={this.state.features} />
+        <div className="helpful_info"><span className="link"><a href="#" >Learn more</a> about our methodology</span></div>
+        <Reviews reviews={this.state.reviews} />
+      </StyledApp >
     )
   }
 };
