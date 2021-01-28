@@ -1,7 +1,7 @@
 version: '3'
 services:
  checkout:
-  build: Local-Review/Dockerfile
+  build: 
    context: .
   ports:
    - 3004:3004
