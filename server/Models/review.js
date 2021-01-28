@@ -22,7 +22,9 @@ const ReviewSchema = new mongoose.Schema({
 const Feature = mongoose.model('features', FeatureSchema);
 const Review = mongoose.model('reviews', ReviewSchema);
 
-mongoose.connect('mongodb://localhost/review', { useNewUrlParser: true, useUnifiedTopology: true });
+const url = process.env.CONNECTIONSTRING || 'mongodb://localhost/review';
+
+mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const db = mongoose.connection;
 
