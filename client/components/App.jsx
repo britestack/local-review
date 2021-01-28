@@ -89,7 +89,7 @@ class App extends Component {
         <h3>What Locals Say about Marina</h3>
         <div className="voteInfo">At least 130 Trulia users voted on each feature</div>
         <Features features={this.state.features} />
-        <div className="helpful_info"><span className="link"><a href="#" >Learn more</a> about our methodology</span></div>
+        <div className="helpful_info"><span className="link"><a href="" >Learn more</a> about our methodology</span></div>
         <Reviews reviews={this.state.reviews} />
       </StyledApp >
     )
