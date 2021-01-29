@@ -7,8 +7,8 @@ import ModalClose from '../../Logos/ModalClose.jsx'
 const StyledReviews = styled.div`
     border-radius: 8px;
     padding: 32px;
-    width: 1184px;
-    height: 624px;
+    /* width: 1184px; 
+    height: 624px; */
     overflow: scroll;
     @media(max-width: 1000px) {
       width: 700px;
@@ -20,6 +20,9 @@ const StyledReviews = styled.div`
     .responsiveWrapper {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr 1fr;
+      @media(max-width: 1300px) {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
       @media(max-width: 1000px) {
         grid-template-columns: 1fr 1fr;
       }
@@ -108,8 +111,8 @@ const Backdrop = (props) => (
 const StyledModal = styled.div`
   position: fixed;
   z-index: 7;
-  top: 8%;
-  left: 11%;
+  top: 5%;
+  left: 5%;
   box-sizing: border-box;
    @media (max-width: 800px) {
     top: 3%;
