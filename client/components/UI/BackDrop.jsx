@@ -21,7 +21,7 @@ const StyledModal = styled.div`
   position: fixed;
   z-index: 7;
   left: 15%;
-  top: 10%;
+  top: 5%;
   box-sizing: border-box;
    @media (min-width: 600px) {
    left: calc(50% - 250px);
