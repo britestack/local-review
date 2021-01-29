@@ -6,6 +6,9 @@ import Smily from './Logos/Smily.jsx'
 const StyledReview = styled.div`
   /* width: ${props => props.width ? props.width : '10.2rem'}; */
   width: ${props => props.width ? props.width : '227px'};
+  @media(max-width: 1100px) {
+    width: 16rem;
+  }
   @media(max-width: 800px) {
     width: 28rem;
     margin: 5px;
@@ -101,9 +104,10 @@ class ReviewItem extends Component {
   render() {
     const time = this.props.review.posted;
     const id = this.props.review._id;
+    const background = this.props.color;
     return (
-      <StyledReview color={this.state.review.background} width={this.props.width} >
-        <div className="topPart" onClick={() => this.props.selected(id)} >
+      <StyledReview color={this.props.color} width={this.props.width} >
+        <div className="topPart" onClick={() => this.props.selected(id, background)} >
           <div><img src={this.state.review.thumbnail} alt="" /></div>
           <div>
             <div className="username">{this.state.review.username}</div>
@@ -111,7 +115,7 @@ class ReviewItem extends Component {
                 • {moment(time).startOf('month').fromNow()}</div>
           </div>
         </div>
-        <div className="middlePart " onClick={() => this.props.selected(id)} >"{this.state.review.message}"</div>
+        <div className="middlePart " onClick={() => this.props.selected(id, background)} >"{this.state.review.message}"</div>
         <div className="bottomPart">
           <div className="smilyLogo" onClick={this.smilyToggleHandler}><Smily /><span className="liked">{this.state.liked}</span></div>
           <div className="flag" onClick={this.props.flag}>Flag</div>

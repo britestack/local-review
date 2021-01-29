@@ -6,9 +6,8 @@ import ModalClose from '../../Logos/ModalClose.jsx'
 
 const StyledReviews = styled.div`
     border-radius: 8px;
-    padding: 32px;
-    /* width: 1184px; 
-    height: 624px; */
+    padding: 28px;
+    height: 624px;
     overflow: scroll;
     @media(max-width: 1000px) {
       width: 700px;
@@ -20,10 +19,7 @@ const StyledReviews = styled.div`
     .responsiveWrapper {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr 1fr;
-      @media(max-width: 1300px) {
-        grid-template-columns: 1fr 1fr 1fr;
-      }
-      @media(max-width: 1000px) {
+      @media(max-width: 1100px) {
         grid-template-columns: 1fr 1fr;
       }
       @media(max-width: 800px) {
@@ -64,7 +60,6 @@ const StyledReviews = styled.div`
       };
       background-color: transparent;
       border-color: transparent;
-      /* margin-bottom: 16px; */
       border-radius: 8px;
       border-width: 1px;
       border-style: solid;
@@ -111,12 +106,14 @@ const Backdrop = (props) => (
 const StyledModal = styled.div`
   position: fixed;
   z-index: 7;
+  width: 80%;
   top: 5%;
-  left: 5%;
+  left: 10%;
   box-sizing: border-box;
    @media (max-width: 800px) {
-    top: 3%;
-    left: 3%;
+    width: 50%;
+    top: 2%;
+    left: 2%;
   }
 `;
 
@@ -128,6 +125,31 @@ const Modal = (props) => (
     </StyledModal>
   </>
 );
+
+const colors = {
+  0: '#00adbb',
+  1: '#fa9668',
+  2: '#ceb6ff',
+  3: '#740631',
+  4: '#f2c430',
+  5: '#052286',
+  6: '#ff5e3f',
+  7: '#00adbb',
+  8: '#00adbb',
+  9: '#fa9668',
+  10: '#ceb6ff',
+  11: '#740631',
+  12: '#f2c430',
+  13: '#052286',
+  14: '#ff5e3f',
+  15: '#00adbb',
+  16: '#00adbb',
+  17: '#fa9668',
+  18: '#ceb6ff',
+  19: '#740631',
+  20: '#f2c430',
+  21: '#052286'
+}
 
 class AllReviewModal extends React.Component {
   constructor(props) {
@@ -175,7 +197,7 @@ class AllReviewModal extends React.Component {
                 {this.state.view === 'all' ? reviews.map((review, i) => {
                   return (
                     <div key={i} className="items">
-                      <ReviewItem flag={this.props.showflag} width="265px" review={review} />
+                      <ReviewItem flag={this.props.showflag} width="200px" color={colors[i]} review={review} />
                     </div>
                   )
                 }) : null}
@@ -183,7 +205,7 @@ class AllReviewModal extends React.Component {
                 {this.state.view === 'community' ? community.map((review, i) => {
                   return (
                     <div key={i} className="items">
-                      <ReviewItem flag={this.props.showflag} width="265px" review={review} />
+                      <ReviewItem flag={this.props.showflag} width="200px" color={colors[i]} review={review} />
                     </div>
                   )
                 }) : null}
@@ -191,7 +213,7 @@ class AllReviewModal extends React.Component {
                 {this.state.view === 'dogOwners' ? dogOwners.map((review, i) => {
                   return (
                     <div key={i} className="items">
-                      <ReviewItem flag={this.props.showflag} width="265px" review={review} />
+                      <ReviewItem flag={this.props.showflag} width="200px" color={colors[i]} review={review} />
                     </div>
                   )
                 }) : null}
@@ -199,7 +221,7 @@ class AllReviewModal extends React.Component {
                 {this.state.view === 'parents' ? parents.map((review, i) => {
                   return (
                     <div key={i} className="items">
-                      <ReviewItem flag={this.props.showflag} width="265px" review={review} />
+                      <ReviewItem flag={this.props.showflag} width="200px" color={colors[i]} review={review} />
                     </div>
                   )
                 }) : null}
@@ -207,7 +229,7 @@ class AllReviewModal extends React.Component {
                 {this.state.view === 'commute' ? commute.map((review, i) => {
                   return (
                     <div key={i} className="items">
-                      <ReviewItem flag={this.props.showflag} width="265px" review={review} />
+                      <ReviewItem flag={this.props.showflag} width="200px" color={colors[i]} review={review} />
                     </div>
                   )
                 }) : null}

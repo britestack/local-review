@@ -30,7 +30,6 @@ const StyledApp = styled.div`
     padding: 0px 0px 24px;
   }
   h3 {
-    /* font-family: TruliaSans; */
     font-size: 24px;
     font-weight: bold;
     font-style: normal;

@@ -11,7 +11,6 @@ const StyledButton = styled.div`
     border: 1px solid rgb(150, 150, 150);
   };
   position: absolute;
-  /* right: -.8rem; */
   right: -.5rem;
   top: calc(50% - 24px);
   transition: box-shadow 0.1s ease 0s, color 0.1s ease 0s, border-color 0.2sease 0s, background-color 0.2s ease 0s;

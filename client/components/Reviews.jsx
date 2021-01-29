@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import axios from 'axios';
 import ReviewItem from './ReviewItem.jsx';
 import SingleReview from './UI/Modal/SingleReviewModal.jsx';
@@ -47,7 +47,6 @@ const StyledReviews = styled.div`
       };
       background-color: transparent;
       border-color: transparent;
-      /* margin-bottom: 16px; */
       border-radius: 8px;
       border-width: 1px;
       border-style: solid;
@@ -64,12 +63,10 @@ const StyledReviews = styled.div`
     }
   }
   .slider {
-    /* margin-top: 16px; */
     position: relative;
     font-size: 16px;
     line-height: 1.5;
     letter-spacing: -0.1px;
-    /* transition: transform 0.45s ease 0s; */
   }
   .responsiveWrapper {
     display: flex;
@@ -85,7 +82,6 @@ const StyledReviews = styled.div`
     border-style: solid;
     border-color: transparent;
     border-width: 16px 8px 0px;
-    /* display: block; */
     @media (min-width: 376px){
       width: 96%;
     }
@@ -94,6 +90,31 @@ const StyledReviews = styled.div`
     }
   }
 `;
+
+const colors = {
+  0: '#00adbb',
+  1: '#fa9668',
+  2: '#ceb6ff',
+  3: '#740631',
+  4: '#f2c430',
+  5: '#052286',
+  6: '#ff5e3f',
+  7: '#00adbb',
+  8: '#00adbb',
+  9: '#fa9668',
+  10: '#ceb6ff',
+  11: '#740631',
+  12: '#f2c430',
+  13: '#052286',
+  14: '#ff5e3f',
+  15: '#00adbb',
+  16: '#00adbb',
+  17: '#fa9668',
+  18: '#ceb6ff',
+  19: '#740631',
+  20: '#f2c430',
+  21: '#052286'
+}
 
 class Reviews extends Component {
   constructor(props) {
@@ -123,14 +144,15 @@ class Reviews extends Component {
       showingAll: false
     })
   }
-  onClickHandler(id) {
+  onClickHandler(id, backgroundColor) {
     axios.get(`reviews/${id}`)
       .then(result => {
+        const selectedReview = Object.assign({}, result.data);
+        selectedReview.background = backgroundColor;
         this.setState({
-          selectedReview: result.data,
+          selectedReview,
           showingSingle: true
         })
-        console.log('review clicked, id: ', id);
       })
       .catch(err => {
         console.log('err: ', err);
@@ -178,7 +200,7 @@ class Reviews extends Component {
                 {this.state.view === 'all' ? all.map((review, i) => {
                   return (
                     <div key={i} className="items">
-                      <ReviewItem flag={this.showFlag} review={review} selected={this.onClickHandler} />
+                      <ReviewItem flag={this.showFlag} review={review} selected={this.onClickHandler} color={colors[i]} />
                     </div>
                   )
                 }) : null}
@@ -186,7 +208,7 @@ class Reviews extends Component {
                 {this.state.view === 'community' ? community.map((review, i) => {
                   return (
                     <div key={i} className="items">
-                      <ReviewItem flag={this.showFlag} review={review} selected={this.onClickHandler} />
+                      <ReviewItem flag={this.showFlag} review={review} selected={this.onClickHandler} color={colors[i]} />
                     </div>
                   )
                 }) : null}
@@ -194,7 +216,7 @@ class Reviews extends Component {
                 {this.state.view === 'dogOwners' ? dogOwners.map((review, i) => {
                   return (
                     <div key={i} className="items">
-                      <ReviewItem flag={this.showFlag} review={review} selected={this.onClickHandler} />
+                      <ReviewItem flag={this.showFlag} review={review} selected={this.onClickHandler} color={colors[i]} />
                     </div>
                   )
                 }) : null}
@@ -202,7 +224,7 @@ class Reviews extends Component {
                 {this.state.view === 'parents' ? parents.map((review, i) => {
                   return (
                     <div key={i} className="items">
-                      <ReviewItem flag={this.showFlag} review={review} selected={this.onClickHandler} />
+                      <ReviewItem flag={this.showFlag} review={review} selected={this.onClickHandler} color={colors[i]} />
                     </div>
                   )
                 }) : null}
@@ -210,7 +232,7 @@ class Reviews extends Component {
                 {this.state.view === 'commute' ? commute.map((review, i) => {
                   return (
                     <div key={i} className="items">
-                      <ReviewItem flag={this.showFlag} review={review} selected={this.onClickHandler} />
+                      <ReviewItem flag={this.showFlag} review={review} selected={this.onClickHandler} color={colors[i]} />
                     </div>
                   )
                 }) : null}
