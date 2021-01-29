@@ -8,11 +8,11 @@ import CloseButton from '../../Logos/CloseButton.jsx'
 const StyledReview = styled.div`
     border-radius: 8px;
     padding: 32px;
-    width: 100%;
     min-height: 560px;
     max-height: 600px;
     color: rgb(255, 255, 255);
     background-color: ${props => props.color};
+    max-width: 360px;
     display: flex;
     flex-direction: column;
     overflow: auto;
