@@ -13,8 +13,6 @@ const StyledReview = styled.div`
     max-height: 600px;
     color: rgb(255, 255, 255);
     background-color: ${props => props.color};
-    max-width: 375px;
-    max-height: 667px;
     display: flex;
     flex-direction: column;
     overflow: auto;

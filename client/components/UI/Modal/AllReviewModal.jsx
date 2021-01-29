@@ -6,7 +6,7 @@ import ModalClose from '../../Logos/ModalClose.jsx'
 
 const StyledReviews = styled.div`
     border-radius: 8px;
-    padding: 28px;
+    padding: 22px;
     height: 624px;
     overflow: scroll;
     @media(max-width: 1000px) {
@@ -197,7 +197,7 @@ class AllReviewModal extends React.Component {
                 {this.state.view === 'all' ? reviews.map((review, i) => {
                   return (
                     <div key={i} className="items">
-                      <ReviewItem flag={this.props.showflag} width="200px" color={colors[i]} review={review} />
+                      <ReviewItem flag={this.props.showflag} width="232px" color={colors[i]} review={review} />
                     </div>
                   )
                 }) : null}
@@ -205,7 +205,7 @@ class AllReviewModal extends React.Component {
                 {this.state.view === 'community' ? community.map((review, i) => {
                   return (
                     <div key={i} className="items">
-                      <ReviewItem flag={this.props.showflag} width="200px" color={colors[i]} review={review} />
+                      <ReviewItem flag={this.props.showflag} width="232px" color={colors[i]} review={review} />
                     </div>
                   )
                 }) : null}
@@ -213,7 +213,7 @@ class AllReviewModal extends React.Component {
                 {this.state.view === 'dogOwners' ? dogOwners.map((review, i) => {
                   return (
                     <div key={i} className="items">
-                      <ReviewItem flag={this.props.showflag} width="200px" color={colors[i]} review={review} />
+                      <ReviewItem flag={this.props.showflag} width="232px" color={colors[i]} review={review} />
                     </div>
                   )
                 }) : null}
@@ -221,7 +221,7 @@ class AllReviewModal extends React.Component {
                 {this.state.view === 'parents' ? parents.map((review, i) => {
                   return (
                     <div key={i} className="items">
-                      <ReviewItem flag={this.props.showflag} width="200px" color={colors[i]} review={review} />
+                      <ReviewItem flag={this.props.showflag} width="232px" color={colors[i]} review={review} />
                     </div>
                   )
                 }) : null}
@@ -229,7 +229,7 @@ class AllReviewModal extends React.Component {
                 {this.state.view === 'commute' ? commute.map((review, i) => {
                   return (
                     <div key={i} className="items">
-                      <ReviewItem flag={this.props.showflag} width="200px" color={colors[i]} review={review} />
+                      <ReviewItem flag={this.props.showflag} width="232px" color={colors[i]} review={review} />
                     </div>
                   )
                 }) : null}
