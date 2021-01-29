@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledBackDrop = styled.div`
-  /* display: inline; */
   width: 100%;
   height: 100%;
   position: fixed;

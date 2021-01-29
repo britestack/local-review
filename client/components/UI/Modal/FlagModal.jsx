@@ -91,9 +91,6 @@ const StyledModal = styled.div`
   top: 12%;
   left: 30%;
   box-sizing: border-box;
-   /* @media (min-width: 600px) {
-   left: calc(25%% - 250px);
-  } */
 `;
 
 const Modal = (props) => (

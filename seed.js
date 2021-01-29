@@ -23,33 +23,7 @@ const createReview = (n) => {
     // const randomNum = Math.floor(Math.random() * 32);
     return `https://hack-reactor-images.s3-us-west-1.amazonaws.com/people/person-${num}.jpg`
   }
-  const colorGenerator = (num) => {
-    const colors = {
-      0: '#00adbb',
-      1: '#fa9668',
-      2: '#ceb6ff',
-      3: '#740631',
-      4: '#f2c430',
-      5: '#052286',
-      6: '#ff5e3f',
-      7: '#00adbb',
-      8: '#00adbb',
-      9: '#fa9668',
-      10: '#ceb6ff',
-      11: '#740631',
-      12: '#f2c430',
-      13: '#052286',
-      14: '#ff5e3f',
-      15: '#00adbb',
-      16: '#00adbb',
-      17: '#fa9668',
-      18: '#ceb6ff',
-      19: '#740631',
-      20: '#f2c430',
-      21: '#052286'
-    }
-    return colors[num]
-  }
+
   const messageGenerator = () => {
     const messages = ["They have neighborhood potlucks and Every Halloween they have a neighborhood Block party Where everyone can gather and share recipes and other things!!",
     "Close to the water. Great amenities and shops and restaurants. Can’t beat the view. Walker friendly.",
@@ -79,7 +53,6 @@ const createReview = (n) => {
   review.posted = faker.date.past();
   review.message = messageGenerator(); // generate custom random reviews
   review.liked = Math.floor(Math.random() * 10);
-  review.background = colorGenerator(n);
   return review;
 };
 

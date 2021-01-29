@@ -10,6 +10,7 @@ const StyledReview = styled.div`
     padding: 32px;
     width: 100%;
     min-height: 560px;
+    max-height: 600px;
     color: rgb(255, 255, 255);
     background-color: ${props => props.color};
     max-width: 375px;
