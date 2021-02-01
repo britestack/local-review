@@ -98,9 +98,9 @@ const Backdrop = (props) => (
 const StyledModal = styled.div`
   position: fixed;
   z-index: 7;
-  width: 70%;
+  width: 90%;
   top: 5%;
-  left: 15%;
+  left: 5%;
   box-sizing: border-box;
 `;
 
