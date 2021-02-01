@@ -98,9 +98,9 @@ const Backdrop = (props) => (
 const StyledModal = styled.div`
   position: fixed;
   z-index: 7;
-  width: 90%;
+  width: 70%;
   top: 5%;
-  left: 5%;
+  left: 15%;
   box-sizing: border-box;
 `;
 
@@ -182,31 +182,31 @@ class AllReviewModal extends React.Component {
               {/* show all reviews  */}
               {this.state.view === 'all' ? reviews.map((review, i) => {
                 return (
-                  <ReviewItem width={'250px'} flag={this.props.showflag} key={i} review={review} selected={this.onClickHandler} color={colors[i]} />
+                  <ReviewItem flag={this.props.showflag} key={i} review={review} selected={this.onClickHandler} color={colors[i]} />
                 )
               }) : null}
               {/* show community reviews  */}
               {this.state.view === 'community' ? community.map((review, i) => {
                 return (
-                  <ReviewItem width={'250px'} flag={this.props.showflag} key={i} review={review} selected={this.onClickHandler} color={colors[i]} />
+                  <ReviewItem flag={this.props.showflag} key={i} review={review} selected={this.onClickHandler} color={colors[i]} />
                 )
               }) : null}
               {/* show dog owners reviews  */}
               {this.state.view === 'dogOwners' ? dogOwners.map((review, i) => {
                 return (
-                  <ReviewItem width={'250px'} flag={this.props.showflag} key={i} review={review} selected={this.onClickHandler} color={colors[i]} />
+                  <ReviewItem flag={this.props.showflag} key={i} review={review} selected={this.onClickHandler} color={colors[i]} />
                 )
               }) : null}
               {/* show parents reviews  */}
               {this.state.view === 'parents' ? parents.map((review, i) => {
                 return (
-                  <ReviewItem width={'250px'} flag={this.props.showflag} key={i} review={review} selected={this.onClickHandler} color={colors[i]} />
+                  <ReviewItem flag={this.props.showflag} key={i} review={review} selected={this.onClickHandler} color={colors[i]} />
                 )
               }) : null}
               {/* show commute reviews  */}
               {this.state.view === 'commute' ? commute.map((review, i) => {
                 return (
-                  <ReviewItem width={'250px'} flag={this.props.showflag} key={i} review={review} selected={this.onClickHandler} color={colors[i]} />
+                  <ReviewItem flag={this.props.showflag} key={i} review={review} selected={this.onClickHandler} color={colors[i]} />
                 )
               }) : null}
             </div>
