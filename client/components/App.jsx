@@ -43,13 +43,6 @@ const StyledApp = styled.div`
   }
 `;
 
-const StyledWrapper = styled.div`
-display: flex;
-  .one {
-  flex: 1;
-}
-`;
-
 class App extends Component {
   constructor(props) {
     super(props);

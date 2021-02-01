@@ -1,5 +1,4 @@
 import React from 'react';
-import moment from 'moment';
 import styled from 'styled-components';
 import ReviewItem from '../../../components/ReviewItem.jsx';
 import ModalClose from '../../Logos/ModalClose.jsx'
@@ -13,10 +12,11 @@ const StyledReviews = styled.div`
       width: 700px;
     }
     @media(max-width: 800px) {
-      width: 550px;
+      width: 500px;
     }
     background-color: rgb(255, 255, 255);
     .responsiveWrapper {
+      font-size: 20px;
       display: grid;
       grid-template-columns: 1fr 1fr 1fr 1fr;
       @media(max-width: 1100px) {
@@ -24,18 +24,11 @@ const StyledReviews = styled.div`
       }
       @media(max-width: 800px) {
         grid-template-columns: 1fr;
-        .items {
-         margin-bottom: 5px;
-        }
       }
-    }
-    .items {
-      margin: 7px;
     }
     .nav {
       position: relative;
       color: rgb(59, 65, 68);
-      font-size: 16px;
       line-height: 1.5;
       letter-spacing: -0.1px;
       display: flex;
@@ -54,9 +47,8 @@ const StyledReviews = styled.div`
       };
       &:focus{
         outline: 0;
-        -webkit-box-shadow: none;
         color: rgb(0, 120, 130);
-        background-color: #DDDADA;
+        border: solid 1px #DDDADA;
       };
       background-color: transparent;
       border-color: transparent;
@@ -70,7 +62,7 @@ const StyledReviews = styled.div`
       font-weight: bold;
       transition: top 0.1s ease 0s, box-shadow 0.1s ease 0s, border-color 0.1s ease 0s, background-color 0.1s ease 0s, color 0.1s ease 0s;
       white-space: nowrap;
-      font-size: 16px;
+      font-size: 20px;
       line-height: 1.5;
       padding: 8px 16px;
     }
@@ -106,15 +98,10 @@ const Backdrop = (props) => (
 const StyledModal = styled.div`
   position: fixed;
   z-index: 7;
-  width: 80%;
+  width: 90%;
   top: 5%;
-  left: 10%;
+  left: 5%;
   box-sizing: border-box;
-   @media (max-width: 800px) {
-    width: 50%;
-    top: 2%;
-    left: 2%;
-  }
 `;
 
 const Modal = (props) => (
@@ -184,56 +171,44 @@ class AllReviewModal extends React.Component {
         <StyledReviews>
           <div className="container">
             <div className="nav">
-              <div><button onClick={() => this.buttonClickHandler('all')}>All</button></div>
+              <div><button autoFocus="true" onClick={() => this.buttonClickHandler('all')}>All</button></div>
               <div><button onClick={() => this.buttonClickHandler('community')}>Community</button></div>
               <div><button onClick={() => this.buttonClickHandler('dogOwners')}>Dog Owners</button></div>
               <div><button onClick={() => this.buttonClickHandler('parents')}>Parents</button></div>
               <div><button onClick={() => this.buttonClickHandler('commute')}>Commute</button></div>
               <div className="closeButton" onClick={() => this.props.close()} ><ModalClose /></div>
             </div>
-            <div className="itemsWrapper">
-              <div className="responsiveWrapper">
-                {/* show all reviews  */}
-                {this.state.view === 'all' ? reviews.map((review, i) => {
-                  return (
-                    <div key={i} className="items">
-                      <ReviewItem flag={this.props.showflag} width="232px" color={colors[i]} review={review} />
-                    </div>
-                  )
-                }) : null}
-                {/* show community reviews  */}
-                {this.state.view === 'community' ? community.map((review, i) => {
-                  return (
-                    <div key={i} className="items">
-                      <ReviewItem flag={this.props.showflag} width="232px" color={colors[i]} review={review} />
-                    </div>
-                  )
-                }) : null}
-                {/* show dog owners reviews  */}
-                {this.state.view === 'dogOwners' ? dogOwners.map((review, i) => {
-                  return (
-                    <div key={i} className="items">
-                      <ReviewItem flag={this.props.showflag} width="232px" color={colors[i]} review={review} />
-                    </div>
-                  )
-                }) : null}
-                {/* show parents reviews  */}
-                {this.state.view === 'parents' ? parents.map((review, i) => {
-                  return (
-                    <div key={i} className="items">
-                      <ReviewItem flag={this.props.showflag} width="232px" color={colors[i]} review={review} />
-                    </div>
-                  )
-                }) : null}
-                {/* show commute reviews  */}
-                {this.state.view === 'commute' ? commute.map((review, i) => {
-                  return (
-                    <div key={i} className="items">
-                      <ReviewItem flag={this.props.showflag} width="232px" color={colors[i]} review={review} />
-                    </div>
-                  )
-                }) : null}
-              </div>
+            <div className="responsiveWrapper">
+              {/* show all reviews  */}
+              {this.state.view === 'all' ? reviews.map((review, i) => {
+                return (
+                  <ReviewItem width={'250px'} flag={this.props.showflag} key={i} review={review} selected={this.onClickHandler} color={colors[i]} />
+                )
+              }) : null}
+              {/* show community reviews  */}
+              {this.state.view === 'community' ? community.map((review, i) => {
+                return (
+                  <ReviewItem width={'250px'} flag={this.props.showflag} key={i} review={review} selected={this.onClickHandler} color={colors[i]} />
+                )
+              }) : null}
+              {/* show dog owners reviews  */}
+              {this.state.view === 'dogOwners' ? dogOwners.map((review, i) => {
+                return (
+                  <ReviewItem width={'250px'} flag={this.props.showflag} key={i} review={review} selected={this.onClickHandler} color={colors[i]} />
+                )
+              }) : null}
+              {/* show parents reviews  */}
+              {this.state.view === 'parents' ? parents.map((review, i) => {
+                return (
+                  <ReviewItem width={'250px'} flag={this.props.showflag} key={i} review={review} selected={this.onClickHandler} color={colors[i]} />
+                )
+              }) : null}
+              {/* show commute reviews  */}
+              {this.state.view === 'commute' ? commute.map((review, i) => {
+                return (
+                  <ReviewItem width={'250px'} flag={this.props.showflag} key={i} review={review} selected={this.onClickHandler} color={colors[i]} />
+                )
+              }) : null}
             </div>
           </div>
         </StyledReviews>

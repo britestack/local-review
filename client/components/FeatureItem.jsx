@@ -58,7 +58,7 @@ const StyledItem = styled.div`
   .description {
     padding-left: 2.5rem;
     color: rgb(59, 65, 68);
-    font-size: 16px;
+    font-size: 15px;
   }
 `;
 
