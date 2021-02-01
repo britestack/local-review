@@ -6,7 +6,7 @@ import Smily from './Logos/Smily.jsx'
 const StyledReview = styled.div`
   .wrapper {
     width: ${props => props.width ? props.width : '170px'};
-    height: 290px;
+    height: 280px;
   }
   padding: 28px; // do not touch
   margin: 10px 20px 15px 0px;
