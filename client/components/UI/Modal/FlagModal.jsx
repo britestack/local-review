@@ -120,7 +120,7 @@ const FlagModal = (props) => {
             <li><label><input type="radio" name="reasons" value="duplicate content" /><span>Duplicate content</span></label></li>
           </ul>
           <div className="buttons" onClick={props.close}>
-            <button className="report">Report</button>
+            <button className="report" onClick={() => alert('reported')}>Report</button>
             <button className="cancel">Cancel</button>
           </div>
         </div>

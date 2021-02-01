@@ -11,19 +11,15 @@ import PrevButton from './PrevButton.jsx';
 const StyledReviews = styled.div`
   position: relative;
   display: flex;
-  width: 960px;
-  height: 419px;
+  width: 970px;
+  height: 400px;
   color:#3b4144;
-  letter-spacing: -0.1px;
-  line-height: 24px;
   .container {
     overflow: hidden;
   }
   .nav {
     color: rgb(59, 65, 68);
     font-size: 16px;
-    line-height: 1.5;
-    letter-spacing: -0.1px;
     display: flex;
     flex-wrap: nowrap;
     overflow-x: auto;
@@ -40,7 +36,6 @@ const StyledReviews = styled.div`
       };
       &:focus{
         outline: 0;
-        -webkit-box-shadow: none;
         color: rgb(0, 120, 130);
         background-color: rgb(255, 255, 255);
         border-color: solid 2px rgb(232, 233, 234);
@@ -57,37 +52,18 @@ const StyledReviews = styled.div`
       font-weight: bold;
       transition: top 0.1s ease 0s, box-shadow 0.1s ease 0s, border-color 0.1s ease 0s, background-color 0.1s ease 0s, color 0.1s ease 0s;
       white-space: nowrap;
-      font-size: 16px;
-      line-height: 1.5;
-      padding: 8px 16px;
+      font-size: 19px;
+      padding: 8px 12px;
     }
   }
   .slider {
     position: relative;
     font-size: 16px;
-    line-height: 1.5;
-    letter-spacing: -0.1px;
   }
   .responsiveWrapper {
     display: flex;
-    margin-left: -8px;
-    margin-right: -8px;
-    margin-top: -16px;
-    flex-wrap: nowrap;
     transition: all .4s ease 0s;
-    transform: ${props => props.slide ? 'translateX(-60.5rem)' : '0'}
-  }
-  .items{
-    cursor: pointer;
-    border-style: solid;
-    border-color: transparent;
-    border-width: 16px 8px 0px;
-    @media (min-width: 376px){
-      width: 96%;
-    }
-    @media (min-width: 570px){
-      width: 48%;
-    }
+    transform: ${props => props.slide ? 'translateX(-980px)' : '0'}
   }
 `;
 
@@ -188,7 +164,7 @@ class Reviews extends Component {
         <StyledReviews slide={this.state.slide}>
           <div className="container">
             <div className="nav">
-              <div><button onClick={() => this.buttonClickHandler('all')}>All</button></div>
+              <div><button autofocus="true" onClick={() => this.buttonClickHandler('all')}>All</button></div>
               <div><button onClick={() => this.buttonClickHandler('community')}>Community</button></div>
               <div><button onClick={() => this.buttonClickHandler('dogOwners')}>Dog Owners</button></div>
               <div><button onClick={() => this.buttonClickHandler('parents')}>Parents</button></div>
@@ -199,41 +175,31 @@ class Reviews extends Component {
                 {/* show all reviews  */}
                 {this.state.view === 'all' ? all.map((review, i) => {
                   return (
-                    <div key={i} className="items">
-                      <ReviewItem flag={this.showFlag} review={review} selected={this.onClickHandler} color={colors[i]} />
-                    </div>
+                    <ReviewItem flag={this.showFlag} key={i} review={review} selected={this.onClickHandler} color={colors[i]} />
                   )
                 }) : null}
                 {/* show community reviews  */}
                 {this.state.view === 'community' ? community.map((review, i) => {
                   return (
-                    <div key={i} className="items">
-                      <ReviewItem flag={this.showFlag} review={review} selected={this.onClickHandler} color={colors[i]} />
-                    </div>
+                    <ReviewItem flag={this.showFlag} key={i} review={review} selected={this.onClickHandler} color={colors[i]} />
                   )
                 }) : null}
                 {/* show dog owners reviews  */}
                 {this.state.view === 'dogOwners' ? dogOwners.map((review, i) => {
                   return (
-                    <div key={i} className="items">
-                      <ReviewItem flag={this.showFlag} review={review} selected={this.onClickHandler} color={colors[i]} />
-                    </div>
+                    <ReviewItem flag={this.showFlag} key={i} review={review} selected={this.onClickHandler} color={colors[i]} />
                   )
                 }) : null}
                 {/* show parents reviews  */}
                 {this.state.view === 'parents' ? parents.map((review, i) => {
                   return (
-                    <div key={i} className="items">
-                      <ReviewItem flag={this.showFlag} review={review} selected={this.onClickHandler} color={colors[i]} />
-                    </div>
+                    <ReviewItem flag={this.showFlag} key={i} review={review} selected={this.onClickHandler} color={colors[i]} />
                   )
                 }) : null}
                 {/* show commute reviews  */}
                 {this.state.view === 'commute' ? commute.map((review, i) => {
                   return (
-                    <div key={i} className="items">
-                      <ReviewItem flag={this.showFlag} review={review} selected={this.onClickHandler} color={colors[i]} />
-                    </div>
+                    <ReviewItem flag={this.showFlag} key={i} review={review} selected={this.onClickHandler} color={colors[i]} />
                   )
                 }) : null}
               </div>

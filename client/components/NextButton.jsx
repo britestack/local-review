@@ -15,7 +15,7 @@ const StyledButton = styled.div`
   top: calc(50% - 24px);
   transition: box-shadow 0.1s ease 0s, color 0.1s ease 0s, border-color 0.2sease 0s, background-color 0.2s ease 0s;
   border-radius: 24px;
-  padding: 1px;
+  padding: .8px;
   display: flex;
   -webkit-box-align: center;
   -webkit-box-pack: center;
@@ -27,7 +27,7 @@ const StyledButton = styled.div`
   .dynamicDisplay {
     font-size: 10px;
     position: absolute;
-    top: 4px;
+    top: 6px;
     right: 6px;
     font-size: 16px;
     font-weight: bold;

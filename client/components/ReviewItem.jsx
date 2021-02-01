@@ -4,53 +4,54 @@ import styled from 'styled-components';
 import Smily from './Logos/Smily.jsx'
 
 const StyledReview = styled.div`
-  /* width: ${props => props.width ? props.width : '10.2rem'}; */
-  width: ${props => props.width ? props.width : '227px'};
-  @media(max-width: 1100px) {
-    width: 16rem;
+  .wrapper {
+    width: ${props => props.width ? props.width : '170px'};
+    height: 290px;
   }
-  @media(max-width: 800px) {
-    width: 28rem;
-    margin: 5px;
-  }
-  height: 19rem;
+  padding: 28px; // do not touch
+  margin: 10px 20px 15px 0px;
   color: white;
-  padding: 28px 32px 10px 32px;
   border-radius: 8px;
   background-color: ${props => props.color};
   display: flex;
   flex-direction: column;
-  letter-spacing: -0.1px;
-  line-height: 24px;
   .topPart {
+    &:hover {
+      cursor: pointer;
+    }
     display: flex;
     flex: 1;
-    width: 11rem;
-    height: 1.5rem;
+    height: auto;
     img {
-      margin-right: .2rem;
-      width: 38px;
-      height: 38px;
-      border-radius: 1rem;
+      margin-right: 8px;
+      width: 36px;
+      height: 36px;
+      border-radius: 60px;
     }
     .username {
-      font-size: 16px;
-      font-weight: 900;
+      font-size: 14px;
+      font-weight: 800;
     }
     .userInfo {
       font-size: 12px;
+      margin-top: 3px;
     }
   }
   .middlePart {
-    background-image: linear-gradient(rgba(0, 173, 187, .6));
+    &:hover {
+      cursor: pointer;
+    }
+    width: 100%;
+    height: 185px;
+    margin-top: 15px;
     overflow: hidden;
-    font-size: 20px;
-    padding: 5px;
+    font-size: 24px;
+    padding: 3px;
     flex: 2;
   }
   .bottomPart {
-    color: white;
-    overflow: hidden;
+    position: relative;
+    height: 50px;
     display: flex;
     position: relative;
     justify-content: space-between;
@@ -63,12 +64,12 @@ const StyledReview = styled.div`
       font-size: 18px;
       position: absolute;
       top: 50%;
-      left: 2.6rem;
+      left: 40px;
     }
     .flag {
       position: absolute;
       cursor: pointer;
-      top: 2.3rem;
+      bottom: 5px;
       right: 0;
       font-size: 16px;
     }
@@ -106,19 +107,21 @@ class ReviewItem extends Component {
     const id = this.props.review._id;
     const background = this.props.color;
     return (
-      <StyledReview color={this.props.color} width={this.props.width} >
-        <div className="topPart" onClick={() => this.props.selected(id, background)} >
-          <div><img src={this.state.review.thumbnail} alt="" /></div>
-          <div>
-            <div className="username">{this.state.review.username}</div>
-            <div className="userInfo">{this.state.review.resident === true ? 'Resident' : 'Visitor'}{' '}
+      <StyledReview color={this.props.color} width={this.props.width} padding={this.props.padding}>
+        <div className="wrapper">
+          <div className="topPart" onClick={() => this.props.selected(id, background)} >
+            <div><img src={this.state.review.thumbnail} alt="" /></div>
+            <div>
+              <div className="username">{this.state.review.username}</div>
+              <div className="userInfo">{this.state.review.resident === true ? 'Resident' : 'Visitor'}{' '}
                 • {moment(time).startOf('month').fromNow()}</div>
+            </div>
           </div>
-        </div>
-        <div className="middlePart " onClick={() => this.props.selected(id, background)} >"{this.state.review.message}"</div>
-        <div className="bottomPart">
-          <div className="smilyLogo" onClick={this.smilyToggleHandler}><Smily /><span className="liked">{this.state.liked}</span></div>
-          <div className="flag" onClick={this.props.flag}>Flag</div>
+          <div className="middlePart " onClick={() => this.props.selected(id, background)} >"{this.state.review.message}"</div>
+          <div className="bottomPart">
+            <div className="smilyLogo" onClick={this.smilyToggleHandler}><Smily /><span className="liked">{this.state.liked}</span></div>
+            <div className="flag" onClick={this.props.flag}>Flag</div>
+          </div>
         </div>
       </StyledReview>
     )
