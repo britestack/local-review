@@ -56,6 +56,5 @@ const locationWriter = createCsvWriter({
 });
 
 locationWriter
-  .writeRecords(getLocations(21))
-  .then(()=> console.log('CSV has been written successfully'))
-
+  .writeRecords(getLocations(10000000))
+  .then(()=> console.log('locations.csv has been written successfully'))

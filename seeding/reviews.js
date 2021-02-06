@@ -61,6 +61,6 @@ const reviewsWriter = createCsvWriter({
 });
 
 reviewsWriter
-  .writeRecords(getReviews(21))
-  .then(()=> console.log('CSV has been written successfully'))
+  .writeRecords(getReviews(10000000))
+  .then(()=> console.log('reviews.csv has been written successfully'))
 

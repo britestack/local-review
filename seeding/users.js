@@ -32,6 +32,6 @@ const usersWriter = createCsvWriter({
 });
 
 usersWriter
-  .writeRecords(getUsers(21))
-  .then(()=> console.log('CSV has been written successfully'))
+  .writeRecords(getUsers(10000000))
+  .then(()=> console.log('users.csv has been written successfully'))
 
