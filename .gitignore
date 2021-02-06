@@ -24,3 +24,5 @@ lib-cov
 build/
 dist/
 
+/reviews.csv
+
