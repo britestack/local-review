@@ -291,4 +291,4 @@ Returns: success
 # Schema
 
 
-[schema](review-diagram.png)
+![schema](review-diagram.png)
