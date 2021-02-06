@@ -25,6 +25,10 @@ build/
 dist/
 
 /reviews.csv
-/location.csv
+/reviews_small.csv
+/locations.csv
+/locations_small.csv
 /users.csv
+/users_small.csv
 /reports.csv
+/reports_small.csv

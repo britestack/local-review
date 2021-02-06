@@ -1,8 +1,8 @@
 const faker = require('faker');
 const { Review, Feature, db } = require('../server/Models/review');
-const createCsvWriter = require('csv-writer').createObjectCsvWriter;
+const fs = require('fs');
 
-const createReview = (n) => {
+const createReview = () => {
   const typeGenerator = () => {
     const possibleTypes = ['community','dogOwners','parents','commute'];
     const randomNum = Math.floor(Math.random() * 4);
@@ -30,37 +30,47 @@ const createReview = (n) => {
     const randomNum = Math.floor(Math.random() * 16);
     return messages[randomNum];
   }
-  const review = {};
-  review.username = faker.name.findName();
-  review.type = typeGenerator();
-  review.postedDate = faker.date.past();
-  review.reviewContent = messageGenerator(); // generate custom random reviews
-  review.liked = Math.floor(Math.random() * 10);
-  return review;
+  const review = [];
+  review.push(faker.name.findName());
+  review.push(typeGenerator());
+  review.push(faker.date.past());
+  review.push(messageGenerator()); // generate custom random reviews
+  review.push(Math.floor(Math.random() * 10));
+  return review.toString() + '\n';
 };
 
-const getReviews = (num) => {
-  // num should be lesser than 32 because there're only 32 pic stored on s-3 for now
-  const sampleReviews = [];
-  for (let i = 0; i < num; i++) {
-    const newReview = createReview(i);
-    sampleReviews.push(newReview);
+
+
+const writeReviews = fs.createWriteStream('reviews.csv');
+writeReviews.write('Content,Date Posted,Type,Likes,Parent\n', 'utf8');
+
+
+function writeTenMillionReviews(writer, encoding, callback) {
+  let i = 10000000;
+  let id = 0;
+  function write() {
+    let ok = true;
+    do {
+      i -= 1;
+      id += 1;
+      const data = createReview();
+      if (i === 0) {
+        writer.write(data, encoding, callback);
+      } else {
+// see if we should continue, or wait
+// don't pass the callback, because we're not done yet.
+        ok = writer.write(data, encoding);
+      }
+    } while (i > 0 && ok);
+    if (i > 0) {
+// had to stop early!
+// write some more once it drains
+      writer.once('drain', write);
+    }
   }
-  return sampleReviews;
-};
+write()
+}
 
-const reviewsWriter = createCsvWriter({
-  path: 'reviews.csv',
-  header: [
-    {id: 'reviewContent', title: 'Content'},
-    {id: 'postedDate', title: 'Date Posted'},
-    {id: 'type', title: 'Type'},
-    {id: 'liked', title: 'Likes'},
-    {id: 'parent', title: 'Parent'},
-  ]
+writeTenMillionReviews(writeReviews, 'utf-8', () => {
+  writeReviews.end();
 });
-
-reviewsWriter
-  .writeRecords(getReviews(10000000))
-  .then(()=> console.log('reviews.csv has been written successfully'))
-
