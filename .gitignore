@@ -25,4 +25,5 @@ build/
 dist/
 
 /reviews.csv
-
+/location.csv
+/users.csv

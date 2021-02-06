@@ -63,4 +63,4 @@ const reviewsWriter = createCsvWriter({
 reviewsWriter
   .writeRecords(getReviews(21))
   .then(()=> console.log('CSV has been written successfully'))
-// num should be lesser than 32 because there're only 32 pic stored on s-3 for now
+
