@@ -1,27 +1,12 @@
 const faker = require('faker');
-const { Review, Feature, db } = require('./server/Models/review');
-
-const createFeature = () => {
-  // get random number between min to max
-  let min = 85;
-  let max = 129;
-  let randomNumber = (Math.floor(Math.random() * (max - min + 1)) + min);
-  const feature = {};
-  feature.liked = randomNumber;
-  return feature;
-};
+const { Review, Feature, db } = require('../server/Models/review');
+const createCsvWriter = require('csv-writer').createObjectCsvWriter;
 
 const createReview = (n) => {
   const typeGenerator = () => {
     const possibleTypes = ['community','dogOwners','parents','commute'];
     const randomNum = Math.floor(Math.random() * 4);
     return possibleTypes[randomNum];
-  }
-  const urlGenerator = (num) => {
-    // get a random picture from s3 and return the link
-    // limit is 32 because there're only 32 pics stored on aws-s3 for now
-    // const randomNum = Math.floor(Math.random() * 32);
-    return `https://hack-reactor-images.s3-us-west-1.amazonaws.com/people/person-${num}.jpg`
   }
 
   const messageGenerator = () => {
@@ -47,23 +32,11 @@ const createReview = (n) => {
   }
   const review = {};
   review.username = faker.name.findName();
-  review.thumbnail = urlGenerator(n); // loading images from aws-S3
-  review.resident = faker.random.boolean();
   review.type = typeGenerator();
-  review.posted = faker.date.past();
-  review.message = messageGenerator(); // generate custom random reviews
+  review.postedDate = faker.date.past();
+  review.reviewContent = messageGenerator(); // generate custom random reviews
   review.liked = Math.floor(Math.random() * 10);
   return review;
-};
-
-// generates 16 features
-const getFeatures = () => {
-  const sampleFeatures = [];
-  for (let i = 0; i < 16; i++) {
-    const newFeature = createFeature();
-    sampleFeatures.push(newFeature);
-  }
-  return sampleFeatures;
 };
 
 const getReviews = (num) => {
@@ -76,29 +49,18 @@ const getReviews = (num) => {
   return sampleReviews;
 };
 
-const seedData = (num) => {
-  db.dropDatabase((err, result) => {
-    if(err) console.log('err: ', err);
-    else {
-      console.log('Dropped old data')
-    }
-  });
-  Feature.create(getFeatures(), (err) => {
-    if (err) {
-      console.log('err: ', err);
-    } else {
-      console.log('New features are set');
-    }
-  });
-  Review.create(getReviews(num), (err) => {
-    if (err) {
-      console.log('err: ', err);
-    } else {
-      console.log('New reviews are set and connection closed');
-      db.close();
-    }
-  });
-};
+const reviewsWriter = createCsvWriter({
+  path: 'reviews.csv',
+  header: [
+    {id: 'reviewContent', title: 'Content'},
+    {id: 'postedDate', title: 'Date Posted'},
+    {id: 'type', title: 'Type'},
+    {id: 'liked', title: 'Likes'},
+    {id: 'parent', title: 'Parent'},
+  ]
+});
 
-// num should be lesser than 32 because there're only 32 pic stored on s-3 for now
-seedData(21);
+reviewsWriter
+  .writeRecords(getReviews(21))
+  .then(()=> console.log('CSV has been written successfully'))
+
