@@ -22,11 +22,11 @@ const location = () => {
 
 
 const writeLocations = fs.createWriteStream('locations.csv');
-writeLocations.write('walk_groceries, kids_outside, quiet, car_req, comm_events, sidewalks, walk_at_night, wildlife, walk_res, streets_lit, neighbors_friendly, park_friendly, plan_5_yrs, well_kept_yards, holiday_spirit, dog_friendly\n', 'utf8');
+writeLocations.write('location, walk_groceries, kids_outside, quiet, car_req, comm_events, sidewalks, walk_at_night, wildlife, walk_res, streets_lit, neighbors_friendly, park_friendly, plan_5_yrs, well_kept_yards, holiday_spirit, dog_friendly\n', 'utf8');
 
 
-function writeTenMillionLocations(writer, encoding, callback) {
-  let i = 1000000;
+function writeTwoHundredThousandLocations(writer, encoding, callback) {
+  let i = 200000;
   let id = 0;
   function write() {
     let ok = true;
@@ -51,6 +51,6 @@ function writeTenMillionLocations(writer, encoding, callback) {
 write()
 }
 
-writeTenMillionLocations(writeLocations, 'utf-8', () => {
+writeTwoHundredThousandLocations(writeLocations, 'utf-8', () => {
   writeLocations.end();
 });

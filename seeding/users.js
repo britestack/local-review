@@ -14,11 +14,11 @@ const user = () => {
 
 
 const writeUsers = fs.createWriteStream('users.csv');
-writeUsers.write('User,Profile Picture,Resident,Email,Password\n', 'utf8');
+writeUsers.write('User, Profile Picture, Resident, Email,Password\n', 'utf8');
 
 
-function writeTenMillionUsers(writer, encoding, callback) {
-  let i = 10000000;
+function writeOneMillionUsers(writer, encoding, callback) {
+  let i = 1000000;
   let id = 0;
   function write() {
     let ok = true;
@@ -43,8 +43,8 @@ function writeTenMillionUsers(writer, encoding, callback) {
 write()
 }
 
-writeTenMillionUsers(writeUsers, 'utf-8', () => {
-  writeUsers.end();
+writeOneMillionUsers(writeUsers, 'utf-8', () => {
+  writeUsers.end('users written successfully');
 });
 
 

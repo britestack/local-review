@@ -1,4 +1,5 @@
 const { Database, aql } = require('arangojs');
+const fs = require('fs');
 // const csv = require('csv-parser');
 // const fs = require('fs');
 // const locations = require('../locations_small.csv');
@@ -6,10 +7,10 @@ const { Database, aql } = require('arangojs');
 // const reviews = require('../reviews_small.csv');
 // const users = require('../users_small.csv');
 
-const db = new Database({
-  url: "http://localhost:8529",
-  databaseName: '_system',
-});
+// const db = new Database({
+//   url: "http://localhost:8529",
+//   databaseName: '_system',
+// });
 
 // db.createDatabase('local-review', (err) => {
 //   if (err) {
@@ -18,17 +19,23 @@ const db = new Database({
 //   console.log('database created');
 // })
 
-db.useDatabase('_system');
+// db.useDatabase('_system');
 
-// Location
+// const seedReviewNodes = () => {
+//   // const locations = await db.query(aql`
+//   //   FOR l IN ${locationCollection}
+//   //   RETURN l._key
+//   // `);
+//   // const reviews = await db.query(aql`
+//   //   FOR r IN ${reviewCollection}
+//   //   RETURN r
+//   // `)
 
-const reviewSmallCollection = db.collection('reviews_small');
+//   // locations.forEach((location) => )
 
-const result = db.query(aql`
-  FOR r IN ${reviewSmallCollection}
-  RETURN r
-`)
-.then((cursor) => cursor.forEach((review) => console.log(review)));
+// }
+
+// seedReviewNodes()
 
 
 // locationCollection.create().then(
