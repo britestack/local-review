@@ -35,11 +35,11 @@ function writeTwoHundredThousandLocations(writer, encoding, callback) {
       id += 1;
       const data = location();
       if (i === 0) {
-        writer.write(data, encoding, callback);
+        writer.write(data);
       } else {
 // see if we should continue, or wait
 // don't pass the callback, because we're not done yet.
-        ok = writer.write(data, encoding);
+        ok = writer.write(data);
       }
     } while (i > 0 && ok);
     if (i > 0) {
@@ -51,6 +51,4 @@ function writeTwoHundredThousandLocations(writer, encoding, callback) {
 write()
 }
 
-writeTwoHundredThousandLocations(writeLocations, 'utf-8', () => {
-  writeLocations.end();
-});
+writeTwoHundredThousandLocations(writeLocations);

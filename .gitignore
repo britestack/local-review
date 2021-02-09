@@ -24,16 +24,4 @@ lib-cov
 build/
 dist/
 
-/reviews.csv
-/reviews_small.csv
-/locations.csv
-/locations_small.csv
-/users.csv
-/users_small.csv
-/reports.csv
-/reports_small.csv
-/reviews_edge.csv
-/locations_edge.csv
-/reviews_reports_edge.csv
-/reviews_users_edge.csv
-/users_reports_edge.csv
+*.csv
