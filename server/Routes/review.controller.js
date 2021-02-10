@@ -4,10 +4,22 @@ const db = require('../../database/index.js');
 
 const router = express.Router();
 
+
+// Collections
+
+
 const reviewDoc = db.collection('reviews');
+
+const reportDoc = db.collection('reports');
+
 const reviewReportsGr = db.collection('reviews_reports_edge');
+
 const reviewUserGr = db.collection('reviews_users_edge');
 
+const locationReviewsGr = db.collection('locations_reviews_edge');
+
+
+// GET requests
 
 router.get('/:id', async (req, res) => {
   const id = req.params.id;
@@ -46,5 +58,52 @@ router.get('/:id/reports', async (req, res) => {
 
   res.send(q)
 });
+
+
+// POST requests
+
+router.post('/:locationId/:userId', async (req, res) => {
+  const locationId = 'locations/' + req.params.locationId;
+  const userId = 'users/' + req.params.userId;
+  const { type, datePosted, content } = req.body;
+
+  const newReviewId = await db.query(aql`
+    INSERT {
+      Type: ${type},
+      DatePosted: ${datePosted},
+      Content: ${content},
+      Likes: "0"
+    } INTO ${reviewDoc}
+    LET inserted = NEW
+    RETURN inserted._id
+  `)
+  .then((cursor) => cursor.map((newReview) => newReview));
+
+  const insertIntoUserReviewsGr = await db.query(aql`
+    INSERT { _from: ${userId}, _to: ${newReviewId[0]} } INTO ${reviewUserGr}
+  `)
+
+  const insertIntoLocationReviewsGr = await db.query(aql`
+    INSERT { _from: ${locationId}, _to: ${newReviewId[0]} } INTO ${locationReviewsGr}
+  `)
+
+  const newReportId = await db.query(aql`
+    INSERT {
+      Inappropriate: "0",
+      NotRelevant: "0",
+      Spam: "0",
+      DuplicateContent: "0"
+    } INTO ${reportDoc}
+    LET inserted = NEW
+    RETURN inserted._id
+  `)
+  .then((cursor) => cursor.map((newReport) => newReport));
+
+  const insertIntoReviewReportsGr = await db.query(aql`
+    INSERT { _from: ${newReportId[0]}, _to: ${newReviewId[0]} } INTO ${reviewReportsGr}
+  `);
+
+  res.send(newReviewId);
+})
 
 module.exports = router;

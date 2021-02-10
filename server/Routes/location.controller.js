@@ -33,7 +33,4 @@ router.get('/:id/reviews', async (req, res) => {
   res.send(q)
 });
 
-// router.put('/:locationId/:userId/')
-
-
 module.exports = router;
