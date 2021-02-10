@@ -1,5 +1,6 @@
+const { aql } = require('arangojs');
 const express = require('express');
-const { Review } = require('../Models/review');
+const db = require('../../database/index.js');
 
 const router = express.Router();
 
