@@ -20,7 +20,7 @@ const reportList = () => {
 }
 
 const writeReports = fs.createWriteStream('reports.csv');
-writeReports.write('Inappropriate, Not Relevant, Spam, Duplicate Content\n', 'utf8');
+writeReports.write('Inappropriate, Not_Relevant, Spam, Duplicate_Content\n', 'utf8');
 
 
 function writeTenMillionReports(writer, encoding, callback) {

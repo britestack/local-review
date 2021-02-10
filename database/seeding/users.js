@@ -14,7 +14,7 @@ const user = () => {
 
 
 const writeUsers = fs.createWriteStream('users.csv');
-writeUsers.write('User, Profile Picture, Resident, Email,Password\n', 'utf8');
+writeUsers.write('User, Profile_Picture, Resident, Email,Password\n', 'utf8');
 
 
 function writeOneMillionUsers(writer, encoding, callback) {
