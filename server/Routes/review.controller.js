@@ -1,73 +1,50 @@
 const { aql } = require('arangojs');
-const express = require('express');
+const express = require('express')
 const db = require('../../database/index.js');
 
 const router = express.Router();
 
-router.get('/', async (req, res) => {
-  try {
-    const reviews = await Review.find();
-    res.status(200).send(reviews);
-  } catch (err) {
-    res.status(400).send(err);
-  }
-});
+const reviewDoc = db.collection('reviews');
+const reviewReportsGr = db.collection('reviews_reports_edge');
+const reviewUserGr = db.collection('reviews_users_edge');
+
 
 router.get('/:id', async (req, res) => {
-  const {id} = req.params;
-  try {
-    const review = await Review.findById(id);
-    res.status(200).send(review);
-  } catch (err) {
-    res.status(400).send(err.message);
-  }
+  const id = req.params.id;
+
+  const q = await db.query(aql`
+    FOR r IN ${reviewDoc}
+      FILTER r._key == ${id}
+      LIMIT 1
+      RETURN r
+  `)
+  .then((cursor) => cursor.map((review) => review))
+
+  res.send(q);
+})
+
+router.get('/:id/user', async (req, res) => {
+  const id = 'reviews/' + req.params.id;
+
+  const q = await db.query(aql`
+    FOR v IN 1..1 INBOUND ${id} ${reviewUserGr}
+      RETURN v
+  `)
+  .then((cursor) => cursor.map((reviews) => reviews))
+
+  res.send(q)
 });
 
-router.post('/', async (req, res) => {
-  // Get user input and make it an object
-  const newReview = new Review({
-    username: req.body.username,
-    thumbnail: req.body.thumbnail,
-    resident: req.body.resident,
-    type: req.body.type,
-    posted: req.body.posted,
-    message: req.body.message,
-    liked: req.body.liked,
-  });
-  try {
-    const saved = await newReview.save();
-    res.status(201).send('saved');
-  } catch (err) {
-    res.status(400).send(err);
-  }
-});
+router.get('/:id/reports', async (req, res) => {
+  const id = 'reviews/' + req.params.id;
 
-router.patch('/:id', async (req, res) => {
-  const {id} = req.params;
-  const updateObj = {
-    username: req.body.username,
-    thumbnail: req.body.thumbnail,
-    resident: req.body.resident,
-    type: req.body.type,
-    posted: req.body.posted,
-    message: req.body.message,
-    liked: req.body.liked,
-  };
-  try {
-    const updated = await Feature.findByIdAndUpdate(id, updateObj);
-    res.status(200).send('updated');
-  } catch (err) {
-    res.status(400).send(err);
-  }
-});
-router.delete('/:id', async (req, res) => {
-  const { id } = req.params;
-  try {
-    const deleted = await Review.findByIdAndDelete(id);
-    res.status(200).send(deleted);
-  } catch (err) {
-    res.status(400).send(err);
-  }
+  const q = await db.query(aql`
+    FOR v IN 1..1 INBOUND ${id} ${reviewReportsGr}
+      RETURN v
+  `)
+  .then((cursor) => cursor.map((reports) => reports))
+
+  res.send(q)
 });
 
 module.exports = router;
