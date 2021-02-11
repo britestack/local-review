@@ -22,7 +22,7 @@ const location = () => {
 
 
 const writeLocations = fs.createWriteStream('locations.csv');
-writeLocations.write('location, walk_groceries, kids_outside, quiet, car_req, comm_events, sidewalks, walk_at_night, wildlife, walk_res, streets_lit, neighbors_friendly, park_friendly, plan_5_yrs, well_kept_yards, holiday_spirit, dog_friendly\n', 'utf8');
+writeLocations.write('location,walk_groceries,kids_outside,quiet,car_req,comm_events,sidewalks, walk_at_night,wildlife,walk_res,streets_lit,neighbors_friendly,park_friendly,plan_5_yrs,well_kept_yards,holiday_spirit,dog_friendly\n', 'utf8');
 
 
 function writeTwoHundredThousandLocations(writer, encoding, callback) {

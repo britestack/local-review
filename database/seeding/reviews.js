@@ -41,7 +41,7 @@ const createReview = () => {
 
 
 const writeReviews = fs.createWriteStream('reviews.csv');
-writeReviews.write('Type,Date Posted,Content,Likes\n', 'utf8');
+writeReviews.write('Type,Date_Posted,Content,Likes\n', 'utf8');
 
 
 function writeTenMillionReviews(writer, encoding, callback) {
