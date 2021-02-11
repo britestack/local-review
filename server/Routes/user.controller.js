@@ -21,7 +21,7 @@ router.get('/:id', async (req, res) => {
   .then((cursor) => cursor.map((user) => user))
 
   res.send(q);
-})
+});
 
 router.get('/:id/reviews', async (req, res) => {
   const id = 'users/' + req.params.id;
@@ -45,6 +45,23 @@ router.get('/:id/reports', async (req, res) => {
   .then((cursor) => cursor.map((reports) => reports))
 
   res.send(q)
+});
+
+
+// POST requests
+
+router.post('/', async (req, res) => {
+  const newUserId = await db.query(aql`
+    INSERT {
+      Type: ${type},
+      DatePosted: ${datePosted},
+      Content: ${content},
+      Likes: "0"
+    } INTO ${userDoc}
+    LET inserted = NEW
+    RETURN inserted._id
+  `)
+  .then((cursor) => cursor.map((newUser) => newUser));
 });
 
 module.exports = router;

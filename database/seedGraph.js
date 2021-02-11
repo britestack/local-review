@@ -21,6 +21,12 @@ const firstLastEntries = async(collection) => {
   `)
 }
 
+export const getOneFirstLastEntries = async(collection) => {
+  const toEntries = await firstLastEntries(to)
+  .then((res) => res.map((r) => r.map((e) => Number(e))));
+  const [last, first] = toEntries[0];
+}
+
 const getFirstLastEntries = async(to, from) => {
   const toEntries = await firstLastEntries(to)
     .then((res) => res.map((r) => r.map((e) => Number(e))));
@@ -32,7 +38,7 @@ const getFirstLastEntries = async(to, from) => {
   return {toLast, toFirst, fromLast, fromFirst}
 }
 
-const seedGraph = (csv, ratio, to, from) => {
+export const seedGraph = (csv, ratio, to, from) => {
   const writer = fs.createWriteStream(csv);
   writer.write('_to,_from\n', 'utf8');
 
