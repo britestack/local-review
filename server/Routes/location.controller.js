@@ -7,6 +7,20 @@ const router = express.Router();
 const locationDoc = db.collection('locations');
 const locationGr = db.collection('locations_reviews_edge');
 
+router.get('/', async(req, res) => {
+  const randId = Math.floor(Math.random() * 200000);
+  
+  const q = await db.query(aql`
+    FOR l IN ${locationDoc}
+      FILTER l._key == ${randId}
+      LIMIT 1
+      RETURN l
+  `)
+  .then((cursor) => cursor.map((location) => location))
+
+  res.send(q);
+})
+
 router.get('/:id', async (req, res) => {
   const id = req.params.id;
 

@@ -9,6 +9,20 @@ const userReportsGr = db.collection('reports_users_edge');
 const userReviewsGr = db.collection('reviews_users_edge');
 
 
+router.get('/', async (req, res) => {
+  const randId = Math.floor(Math.random() * 1000000);
+
+  const q = await db.query(aql`
+    FOR l IN ${userDoc}
+      FILTER l._key == ${randId}
+      LIMIT 1
+      RETURN l
+  `)
+  .then((cursor) => cursor.map((user) => user))
+
+  res.send(q);
+});
+
 router.get('/:id', async (req, res) => {
   const id = req.params.id;
 

@@ -21,6 +21,20 @@ const locationReviewsGr = db.collection('locations_reviews_edge');
 
 // GET requests
 
+router.get('/', async (req, res) => {
+  const randId = Math.floor(Math.random() * 10000000);
+
+  const q = await db.query(aql`
+    FOR r IN ${reviewDoc}
+      FILTER r._key == ${randId}
+      LIMIT 1
+      RETURN r
+  `)
+  .then((cursor) => cursor.map((review) => review))
+
+  res.send(q);
+})
+
 router.get('/:id', async (req, res) => {
   const id = req.params.id;
 
